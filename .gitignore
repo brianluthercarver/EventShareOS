@@ -1,0 +1,13 @@
+# Git Ignore for EventShareOS
+
+# cmake section
+CMakeFiles/
+CMakeCache.txt
+makefile
+cmake_install.cmake
+
+
+# build outputs
+basic_main
+build/
+target/
