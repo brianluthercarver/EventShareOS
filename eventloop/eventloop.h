@@ -31,11 +31,7 @@
 #include <stdint.h>
 
 
-#include "../basic/controls.h"
-#include "../basic/modules.h"
-
-#define MAX_CONTROL_VALUES CONTROL_EOL
-#define MAX_MODUULES 32
+#define MAX_MODULES 32
 
 #define MODULE_01_MASK    0x00000001
 #define MODULE_02_MASK    0x00000002
@@ -64,7 +60,7 @@
 #define MODULE_25_MASK    0x01000000
 #define MODULE_26_MASK    0x02000000
 #define MODULE_27_MASK    0x04000000
-#define MODULE_28_MASK    0x05000000
+#define MODULE_28_MASK    0x08000000
 #define MODULE_29_MASK    0x10000000
 #define MODULE_30_MASK    0x20000000
 #define MODULE_31_MASK    0x40000000
@@ -80,12 +76,14 @@
 
 typedef struct CONTROL_VALUE
 {
-    controls control;
+    uint32_t control;
     uint32_t value;
 } control_value;
 
 
 // these funcations are for main 
+void event_loop_set_controls_range(uint32_t max);
+void event_loop_set_modules_range(uint32_t max);
 void event_loop_init(void);
 void event_loop_scheduler(void);
 bool event_loop_running();
@@ -93,15 +91,17 @@ void timer_init();
 void time_keeper();
 
 // these functions are for modules to use
-void subscribe(modules module, int num, ...);
-void publish_control(controls C, unsigned int V);
+void subscribe(uint32_t module, int num, ...);
+void publish_control(uint32_t C, uint32_t V);
 void signal_quit();
-void add_timer_event(controls C, uint16_t milliseconds, bool timer_type, bool on_off);
-void start_timer(controls C);
-void enable_timer(controls C, bool on_off);
-void cancel_timer(controls C);
+void add_timer_event(uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off);
+void start_timer(uint32_t C);
+void enable_timer(uint32_t C, bool on_off);
+void cancel_timer(uint32_t C);
 
-
+// internal functions for the timer module
+uint32_t get_max_controls();
+uint32_t get_max_modules();
 
 
 #endif // EVENT_LOOP_H

@@ -20,17 +20,36 @@
 #include "eventloop.h"
 #include "custom_event_loop.h"
 
+#define MAX_SUBSCRIPTION_SIZE 100
 #define MAX_QUEUE_SIZE 20
 
-static unsigned int subscriptions[MAX_CONTROL_VALUES];
+static uint32_t subscriptions[MAX_SUBSCRIPTION_SIZE];
 static control_value event_queue[MAX_QUEUE_SIZE];
-static unsigned int head = 0;
-static unsigned int tail = 0;
+static uint32_t head = 0;
+static uint32_t tail = 0;
 static bool queue_available = true;
 static bool running_status = true;
 
+static uint32_t controls_min = 0;
+static uint32_t controls_max = 0;
+static uint32_t modules_min = 0;
+static uint32_t modules_max = 0;
 
+void event_loop_set_controls_range(uint32_t max) {
+    controls_min = 0;
+    controls_max = max;
+}
+void event_loop_set_modules_range(uint32_t max) {
+    modules_min = 0;
+    modules_max = max;
+}
 
+uint32_t get_max_controls() {
+    return(controls_max);
+}
+uint32_t get_max_modules() {
+    return(modules_max);
+}
 
 void event_loop_init(void)
 {
@@ -44,16 +63,16 @@ void event_loop_init(void)
 void event_loop_scheduler(void)
 {
     // get the first item off the queue
-    controls C = event_queue[head].control;
-    unsigned int V = event_queue[head].value;
-    unsigned int module_mask = subscriptions[C];
+    uint32_t C = event_queue[head].control;
+    uint32_t V = event_queue[head].value;
+    uint32_t module_mask = subscriptions[C];
 
     // pass the C & V onto the custom scheduler with the subscription
-    if ( C != CONTROL_UNDEFINED )
+    if (( C > controls_min ) && ( C < controls_max))
     {
     	custom_loop_scheduler(module_mask, C, V);
         // clear the item out of the queue
-    	event_queue[head].control = CONTROL_UNDEFINED;
+    	event_queue[head].control = controls_min;
     	event_queue[head].value = 0;
 
         // move the head pointer
@@ -69,9 +88,9 @@ void event_loop_scheduler(void)
     }
 }
 
-void subscribe(modules module, int num, ...)
+void subscribe(uint32_t module, int num, ...)
 {
-    if ( module < MODULE_EOL)
+    if (( module > modules_min) && (module < modules_max))
     {
         va_list arg_list;
         va_start(arg_list, num);
@@ -79,7 +98,7 @@ void subscribe(modules module, int num, ...)
         {  
             unsigned int control = va_arg(arg_list, unsigned int);
 
-            if ((control > CONTROL_UNDEFINED) && (control < CONTROL_EOL ))
+            if ((control > controls_min) && (control < controls_max ))
             {
                 unsigned int sub = subscriptions[control];
                 unsigned int new = 1 << (module-1);  // modules are bit specific
@@ -91,7 +110,7 @@ void subscribe(modules module, int num, ...)
     }
 }
         
-void publish_control(controls C, unsigned int V)
+void publish_control(uint32_t C, unsigned int V)
 {
     // insert C  V onto the queue 
     // printf("control %d, value %i \n", C, V);

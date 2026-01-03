@@ -4,22 +4,26 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "./eventloop.h"
-#include "./soft_timer.h"
 
-#include "../basic/controls.h"
-#include "../basic/modules.h"
+#include "eventloop.h"
+#include "soft_timer.h"
 
-static unsigned int main_time = 0;
-static unsigned int max_events = 0;
+
+static uint32_t main_time = 0;
+static uint32_t max_events = 0;
 static timer_event timer_events[MAX_TIME_EVENTS];
 
-
+static uint32_t timer_controls_min = 0;
+static uint32_t timer_controls_max = 0;
+static uint32_t timer_modules_min = 0;
+static uint32_t timer_modules_max = 0;
 
 void timer_init()
 {
     memset(timer_events, 0, sizeof(timer_events));
     main_time = 0;
+    timer_controls_max = get_max_controls();
+    timer_modules_max = get_max_modules();
 }
 
 
@@ -53,22 +57,24 @@ void time_keeper()
 
 
 
-void update_timer_event(int i, controls C, uint16_t milliseconds, bool timer_type, bool on_off)
+void update_timer_event(int i, uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off)
 {
-    timer_events[i].control = C;
-    timer_events[i].time = milliseconds;
-    timer_events[i].count_down = milliseconds;
-    timer_events[i].type = timer_type;
-    timer_events[i].enabled = on_off;
+    if ((C > timer_controls_min) && (C < timer_controls_max)) {
+        timer_events[i].control = C;
+        timer_events[i].time = milliseconds;
+        timer_events[i].count_down = milliseconds;
+        timer_events[i].type = timer_type;
+        timer_events[i].enabled = on_off;
+    }
 }
 
-void add_timer_event(controls C, uint16_t milliseconds, bool timer_type, bool on_off)
+void add_timer_event(uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off)
 {
     int i = 0;
     bool not_done = true;
 
     // check for first time add
-    if ((C < CONTROL_EOL) && (max_events == 0))
+    if ((C > timer_controls_min) && (C < timer_controls_max) && (max_events == 0))
     {
         update_timer_event(max_events, C, milliseconds, timer_type, on_off);
         ++max_events;
@@ -85,9 +91,9 @@ void add_timer_event(controls C, uint16_t milliseconds, bool timer_type, bool on
             }
             
             // add a new timer
-            if ( timer_events[i].control == CONTROL_UNDEFINED )
+            if ( timer_events[i].control == timer_controls_min )
             {
-                if ((C < CONTROL_EOL) && (max_events < MAX_TIME_EVENTS))
+                if ((C < timer_controls_max) && (max_events < MAX_TIME_EVENTS))
                 {
                     update_timer_event(i, C, milliseconds, timer_type, on_off);
                     ++max_events;
@@ -105,47 +111,53 @@ void add_timer_event(controls C, uint16_t milliseconds, bool timer_type, bool on
     }
 
 }
-void start_timer(controls C)
+void start_timer(uint32_t C)
 {
-    for (int i = 0; i < max_events; i++)
-    {
-        if (timer_events[i].control == C )
+    if ((C > timer_controls_min) && (C < timer_controls_max)) {
+        for (int i = 0; i < max_events; i++)
         {
-            if (timer_events[i].type == TIMER_ONE_SHOT)
+            if (timer_events[i].control == C )
             {
-                timer_events[i].enabled = TIMER_ENABLED;
-                timer_events[i].count_down = timer_events[i].time;
+                if (timer_events[i].type == TIMER_ONE_SHOT)
+                {
+                    timer_events[i].enabled = TIMER_ENABLED;
+                    timer_events[i].count_down = timer_events[i].time;
+                }
             }
         }
     }
 }
 
-void cancel_timer(controls C)
+void cancel_timer(uint32_t C)
 {
-    for (int i = 0; i < max_events; i++)
-    {
-        if (timer_events[i].control == C )
+    if ((C > timer_controls_min) && (C < timer_controls_max)) {
+        for (int i = 0; i < max_events; i++)
         {
-            if (timer_events[i].type == TIMER_ONE_SHOT)
+            if (timer_events[i].control == C )
             {
-            	if (timer_events[i].enabled == TIMER_ENABLED)
-            	{
-					timer_events[i].enabled = TIMER_DISABLED;
-					timer_events[i].count_down = 0;
-            	}
+                if (timer_events[i].type == TIMER_ONE_SHOT)
+                {
+                    if (timer_events[i].enabled == TIMER_ENABLED)
+                    {
+                        timer_events[i].enabled = TIMER_DISABLED;
+                        timer_events[i].count_down = 0;
+                    }
+                }
             }
         }
     }
 }
 
 
-void enable_timer(controls C, bool on_off)
+void enable_timer(uint32_t C, bool on_off)
 {
-    for (int i = 0; i < max_events; i++)
-    {
-        if (timer_events[i].control == C )
+    if ((C > timer_controls_min) && (C < timer_controls_max)) {
+        for (int i = 0; i < max_events; i++)
         {
-            timer_events[i].enabled = on_off;
+            if (timer_events[i].control == C )
+            {
+                timer_events[i].enabled = on_off;
+            }
         }
     }
 }

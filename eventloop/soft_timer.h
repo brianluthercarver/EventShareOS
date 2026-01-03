@@ -17,12 +17,9 @@
 #include <stdint.h>
 
 
-#include "../basic/controls.h"
-#include "../basic/modules.h"
-
 typedef struct TIMER_EVENT
 {
-    controls control;
+    uint32_t control;
     uint16_t time;
     uint16_t count_down;
     uint8_t type;

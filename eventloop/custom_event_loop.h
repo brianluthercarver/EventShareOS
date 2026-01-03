@@ -14,12 +14,13 @@
 *******************************************************************/
 
 
+#include <stdint.h>
 
 
 
 void custom_loop_init(void);
-void custom_loop_scheduler(unsigned int module_list, controls control, 
-                           unsigned int value);
+void custom_loop_scheduler(uint32_t module_list, uint32_t control, 
+                           uint32_t value);
 void custom_loop_quit(void);
 
 #endif // CUSTOM_EVENT_LOOP_H
