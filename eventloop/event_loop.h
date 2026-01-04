@@ -74,8 +74,7 @@
 #define TIMER_ONE_SHOT   false
 
 
-typedef struct CONTROL_VALUE
-{
+typedef struct CONTROL_VALUE {
     uint32_t control;
     uint32_t value;
 } control_value;

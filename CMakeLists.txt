@@ -16,7 +16,7 @@ target_sources(basic_main PRIVATE
     ./basic/keyboard_module.c
     ./basic/app_module.c
     
-    ./eventloop/eventloop.c
+    ./eventloop/event_loop.c
     ./eventloop/soft_timer.c
     ./eventloop/posix_timer.c
 )
