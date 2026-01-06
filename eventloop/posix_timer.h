@@ -1,7 +1,7 @@
 #ifndef POSIX_TIMER_H
 #define POSIX_TIMER_H
 
-#include "soft_timer.h"
+//#include "soft_timer.h"
 
 /************************************************************
 

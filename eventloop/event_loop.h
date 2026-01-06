@@ -98,6 +98,10 @@ void start_timer(uint32_t C);
 void enable_timer(uint32_t C, bool on_off);
 void cancel_timer(uint32_t C);
 
+void event_data_set_chunks(uint32_t size, uint32_t count);
+uint32_t enqueue_data_chunk(uint32_t C, void * chunk, uint32_t size);
+void get_data_chunk(uint32_t block_number, uint32_t module, void * data, uint32_t size);
+
 // internal functions for the timer module
 uint32_t get_max_controls();
 uint32_t get_max_modules();

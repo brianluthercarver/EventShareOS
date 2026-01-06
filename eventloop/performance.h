@@ -23,4 +23,7 @@ void performance_init();
 
 // performance functions
 void event_queue_miss();
+void os_overhead_start();
+void modules_start();
+
 void module_begin(uint32_t module_number);
