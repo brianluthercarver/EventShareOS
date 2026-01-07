@@ -13,13 +13,13 @@ function.
 *****************************************************/
 #include <stdio.h>
 
-#include "controls.h"
-#include "modules.h"
-#include "event_loop.h"
+#include "EventShareOS.h"
 #include "custom_event_loop.h"
 
 
 // Put the various modules include code here
+#include "modules.h"
+#include "controls.h"
 #include "app_module.h"
 #include "keyboard_module.h"
 

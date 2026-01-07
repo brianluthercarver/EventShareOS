@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "EventShareOS.h"
 #include "event_loop.h"
 #include "soft_timer.h"
 

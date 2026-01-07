@@ -12,7 +12,7 @@ integration of EventShareOS the eventloop code.
 #include <stdbool.h>
 
 // eventloop code
-#include "event_loop.h"
+#include "EventShareOS.h"
 #include "posix_timer.h"
 
 // customizations 
