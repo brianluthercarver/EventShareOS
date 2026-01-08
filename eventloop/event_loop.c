@@ -1,4 +1,8 @@
-
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
+************************************************************/
 
 /*****************************************************************
 *

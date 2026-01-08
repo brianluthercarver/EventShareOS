@@ -1,7 +1,9 @@
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
+************************************************************/
 
-
-#ifndef CUSTOM_EVENT_LOOP_H
-#define CUSTOM_EVENT_LOOP_H
 
 /*****************************************************************
 *
@@ -13,10 +15,10 @@
 *  
 *******************************************************************/
 
+#ifndef CUSTOM_EVENT_LOOP_H
+#define CUSTOM_EVENT_LOOP_H
 
 #include <stdint.h>
-
-
 
 void custom_loop_init(void);
 void custom_loop_scheduler(uint32_t module_list, uint32_t control, 

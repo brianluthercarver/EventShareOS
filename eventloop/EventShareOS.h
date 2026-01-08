@@ -1,7 +1,11 @@
 #ifndef EVENT_SHARE_OS_H
 #define EVENT_SHARE_OS_H
 
-
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
+************************************************************/
 
 /************************************************************
 
@@ -72,25 +76,143 @@ by EventShareOS.
 // Function Definitions
 
 
+// Initialization Functions
+// These need to be run before the super loop
 
-// these funcations are for main 
+/* 
+Function: event_loop_set_events_range (uint32_t max)
+
+EventShareOS needs to know the maximum number of 
+events used by your program. This is to provide
+a safety. It should look like this:
+event_loop_set_events_range(EVENT_EOL); 
+*/
 void event_loop_set_events_range(uint32_t max);
+
+/* 
+Function: event_loop_set_modules_range(uint32_t max)
+
+EventShareOS needs to know the maximum number of 
+events used by your program. This is to provide
+a safety. It should look like this:
+event_loop_set_modules_range(MODULE_EOL); 
+*/
 void event_loop_set_modules_range(uint32_t max);
+
+/* 
+Function: event_loop_init
+
+This initializes the event loop code.  
+*/
 void event_loop_init(void);
-void event_loop_scheduler(void);
+
+/*
+Super Loop Functions:
+
+The following functions are used in main 
+for the super loop. In the following example,
+the main loop is using an polling soft timers
+vs. an interrupt driven system.  Depending on 
+the systems needs, separate includes are 
+provided for the soft timers.  
+
+A polling main loop will look like this:
+
+   while(event_loop_running()) {
+       poll_time_keeper();
+       event_loop_scheduler();
+   }
+*/
+
+
+/* 
+Function: event_loop_running
+This function provides the mechanism to
+break out of the super loop and shut down
+the system.  
+*/
 bool event_loop_running();
-void timer_init();
-void time_keeper();
 
-// these functions are for modules to use
+/* 
+Function: event_loop_scheduler
+This is the heart of EventShareOS managing 
+events and sending them to the module code. 
+*/
+void event_loop_scheduler(void);
+
+
+// Module Functions
+
+/* 
+Function: subscribe(uint32_t module, int num, ...);
+
+Events are shared between modules if they have been 
+subscribed to the event. Please provide the module 
+number, the number of events, and each event number.
+*/
 void subscribe(uint32_t module, int num, ...);
-void publish_event(uint32_t C, uint32_t V);
-void signal_quit();
-void add_timer_event(uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off);
-void start_timer(uint32_t C);
-void enable_timer(uint32_t C, bool on_off);
-void cancel_timer(uint32_t C);
 
+/*
+Function: publish_event(uint32_t C, uint32_t V);
+
+It is the act of publishing an event that drives
+action in the system. Each event is sent as a 
+pair Event and Value (E,V). The value can be 
+any number as long as it's a unsigned 4 byte 
+integer.  To send a float the function will be
+called as such:
+    float real_number = 5.4321;
+    publish_event(EVENT_MY_FLOAT, (uint32_t) real_number);
+*/
+void publish_event(uint32_t E, uint32_t V);
+
+/*
+Function: signal_quit()
+This sends a stop signal to EventShareOS to stop 
+looping and start shutdown and cleanup. For embedded
+systems, this will lead to a power off event. 
+*/
+void signal_quit();
+
+// Timer Functions:
+
+/* 
+Function: add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on_off);
+
+To add timers to the system provide an event number,
+the time in miliseconds, the type: TIMER_REPEAT or 
+TIMER_ONE_SHOT, and if the timer is turned on or off:
+TIMER_ENABLED or TIMER_DISABLED.
+*/
+void add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on_off);
+
+/*
+Function: start_timer(uint32_t E);
+
+To start a TIMER_ONE_SHOT provide the timer event number.
+*/
+void start_timer(uint32_t E);
+
+/*
+Function: enable_timer(uint32_t E, bool on_off);
+
+Used to enable or disable repeating timers. Please
+provide the timer event number and if it's on or off:
+TIMER_ENABLED or TIMER_DISABLED.
+*/
+void enable_timer(uint32_t E, bool on_off);
+
+/*
+Function: cancel_timer(uint32_t E);
+
+This is used to cancel one shot timers. For 
+example this can be used for putting time outs
+on network responses. 
+*/
+void cancel_timer(uint32_t E);
+
+
+// UNDER CONSTRUCTION
 void event_data_set_chunks(uint32_t size, uint32_t count);
 uint32_t enqueue_data_chunk(uint32_t C, void * chunk, uint32_t size);
 void get_data_chunk(uint32_t block_number, uint32_t module, void * data, uint32_t size);

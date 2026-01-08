@@ -1,7 +1,11 @@
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
 
-#ifndef MODULES_H
-#define MODULES_H
-
+basic is an example program using EvenShareOS in a POSIX 
+Linux system. 
+************************************************************/
 
 /************************************************************
 modules.h
@@ -16,6 +20,10 @@ module, it does not get get executed.
  There can be 32 different modules, see eventloop.h
 
 **************************************************************/
+
+#ifndef MODULES_H
+#define MODULES_H
+
 
 typedef enum MODULES
 {

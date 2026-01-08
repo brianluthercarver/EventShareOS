@@ -1,6 +1,11 @@
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
 
-#ifndef EVENTS_H
-#define EVENTS_H
+basic is an example program using EvenShareOS in a POSIX 
+Linux system. 
+************************************************************/
 
 
 /************************************************************
@@ -19,6 +24,10 @@ EVENT_EOL is used for bounding of values and error checking
 
 Each event name should start with EVENT
 **************************************************************/
+
+
+#ifndef EVENTS_H
+#define EVENTS_H
 
 
 typedef enum EVENTS

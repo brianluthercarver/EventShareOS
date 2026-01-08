@@ -1,7 +1,8 @@
-#ifndef POSIX_TIMER_H
-#define POSIX_TIMER_H
-
-//#include "soft_timer.h"
+/************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
+************************************************************/
 
 /************************************************************
 
@@ -14,6 +15,10 @@ to generate millisecond events.
 For polling linux systems use poll_time_keeper().
 
 ************************************************************/
+
+#ifndef POSIX_TIMER_H
+#define POSIX_TIMER_H
+
 
 void init_poll_time_keeper();
 void poll_time_keeper();

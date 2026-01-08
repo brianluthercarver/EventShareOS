@@ -1,4 +1,10 @@
 /************************************************************
+EventShareOS is Copyright (c) by Brian L Carver 2026
+under a MIT license. See the file: EventShareOS_License.txt
+for more details. 
+************************************************************/
+
+/************************************************************
 
 File: performance.h
 Monitoring any systems performance is critical for system 
@@ -12,7 +18,8 @@ Event queue misses
 Event queue depth
 
 ************************************************************/
-
+#ifndef PERFORMANCE_H
+#define PERFORMANCE_H
 
 #include <stdint.h>
 
@@ -27,3 +34,6 @@ void os_overhead_start();
 void modules_start();
 
 void module_begin(uint32_t module_number);
+
+
+#endif // PERFORMANCE_H
