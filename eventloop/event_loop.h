@@ -31,12 +31,12 @@
 #include <stdint.h>
 
 typedef struct CONTROL_VALUE {
-    uint32_t control;
+    uint32_t event;
     uint32_t value;
 } control_value;
 
 // internal functions for the timer module
-uint32_t get_max_controls();
+uint32_t get_max_events();
 uint32_t get_max_modules();
 
 

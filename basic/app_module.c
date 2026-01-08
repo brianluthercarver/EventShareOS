@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 
+#include "events.h"
 #include "app_module.h"
 #include "EventShareOS.h"
 
@@ -8,14 +9,14 @@ static int timer_count = 0;
 
 void app_module_init(){
 
-    enable_timer(CONTROL_TIMER_ONE_SHOT_DEMO, TIMER_ENABLED);
+    enable_timer(EVENT_TIMER_ONE_SHOT_DEMO, TIMER_ENABLED);
 }
 
-void app_module_control(controls C, unsigned int V) {
+void app_module_control(events C, unsigned int V) {
 
-    printf("control %d, value %i \n", C, V);
+    printf("event %d, value %i \n", C, V);
     switch(C) {
-        case CONTROL_KEYBOARD:
+        case EVENT_KEYBOARD:
             char c = (char) V;
             printf("App Control %c \n", c);
 
@@ -25,15 +26,15 @@ void app_module_control(controls C, unsigned int V) {
             }
             break;
 
-        case CONTROL_TIMER_APP_DEMO:
+        case EVENT_TIMER_APP_DEMO:
             timer_count++;
             if ((timer_count % 2) == 0) {
-                start_timer(CONTROL_TIMER_ONE_SHOT_DEMO);
+                start_timer(EVENT_TIMER_ONE_SHOT_DEMO);
             }
             printf("10 Second repeat timer\n");
             break;
 
-        case CONTROL_TIMER_ONE_SHOT_DEMO:
+        case EVENT_TIMER_ONE_SHOT_DEMO:
             printf("5 second one shot timer\n");
             break;
 

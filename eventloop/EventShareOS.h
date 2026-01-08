@@ -74,7 +74,7 @@ by EventShareOS.
 
 
 // these funcations are for main 
-void event_loop_set_controls_range(uint32_t max);
+void event_loop_set_events_range(uint32_t max);
 void event_loop_set_modules_range(uint32_t max);
 void event_loop_init(void);
 void event_loop_scheduler(void);
@@ -84,7 +84,7 @@ void time_keeper();
 
 // these functions are for modules to use
 void subscribe(uint32_t module, int num, ...);
-void publish_control(uint32_t C, uint32_t V);
+void publish_event(uint32_t C, uint32_t V);
 void signal_quit();
 void add_timer_event(uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off);
 void start_timer(uint32_t C);

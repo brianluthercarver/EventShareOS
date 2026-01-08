@@ -11,7 +11,7 @@ keyboard_module.c
 #include <unistd.h>
 
 #include "EventShareOS.h"
-#include "controls.h"
+#include "events.h"
 
 static struct termios original_term_state;
 
@@ -49,13 +49,13 @@ void keyboard_module_init()
 // This a polling function to read the keyboard.
 // This module does not get any inputs. 
 
-void keyboard_module_control(controls C, unsigned int V)
+void keyboard_module_control(events E, unsigned int V)
 {
     char key;
 
     read(STDIN_FILENO, &key, 1);
     if (key != 0) {
-        publish_control(CONTROL_KEYBOARD, (unsigned int) key);
+        publish_event(EVENT_KEYBOARD, (unsigned int) key);
     }
 }
 
