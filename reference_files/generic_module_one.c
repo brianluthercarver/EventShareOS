@@ -1,5 +1,3 @@
-
-
 #include "generic_module_one.h" 
 
 
@@ -9,18 +7,18 @@ void generic_module_one_init() {
     // I have nothing to initilize
 }
 
-void generic_module_one_control(controls C, unsigned int V) {
+void generic_module_one_control(events C, unsigned int V) {
 
-    // perform some action on C and V
+    // perform some action on E and V
 
     switch (C) {
-        case CONTROL_GENERIC_ONE:
+        case EVENT_GENERIC_ONE:
              break;
         case CONTORL_GENEROC_TWO:
              break;
-        case CONTROL_TIMER_ONE:
+        case EVENT_TIMER_ONE:
             break;
-        case CONTROL_TIMER_TWO:
+        case EVENT_TIMER_TWO:
             break;
         defualt:
             // if the subscriptions are done correctly, this should never happen

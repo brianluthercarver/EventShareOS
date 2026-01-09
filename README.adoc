@@ -39,7 +39,15 @@ event_loop -- EV --> Module_C
 
 ----
 
+== Implementing EventShareOS
+Implementation details and best practices for deploying EvenShare can be found here:
 
+link:./doc/implementation.adoc[Implementing EventShareOS]
+
+== Background and History of EventShareOS
+Details on the design philosophy of the creation of EventShareOS.
+
+link:./doc/background.adoc[EventShareOS History]
 
 NOTE: EventShareOS is Copyright (c) by Brian L Carver 2026 under a MIT license. See the file: EventShareOS_License.txt
 for more details. 
