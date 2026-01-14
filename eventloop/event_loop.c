@@ -23,6 +23,7 @@ for more details.
 
 #include "event_loop.h"
 #include "custom_event_loop.h"
+#include "event_data.h"
 
 #define MAX_SUBSCRIPTION_SIZE 100
 #define MAX_QUEUE_SIZE 20
@@ -71,10 +72,12 @@ void event_loop_scheduler(void)
     uint32_t V = event_queue[head].value;
     uint32_t module_mask = subscriptions[E];
 
-    // pass the C & V onto the custom scheduler with the subscription
+    // pass the E & V onto the custom scheduler with the subscription
     if (( E > events_min ) && ( E < events_max))
     {
     	custom_loop_scheduler(module_mask, E, V);
+        event_data_clean_slot();
+        
         // clear the item out of the queue
     	event_queue[head].event = events_min;
     	event_queue[head].value = 0;

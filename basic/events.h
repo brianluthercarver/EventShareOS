@@ -37,7 +37,7 @@ typedef enum EVENTS
 
     // Keyboard events
     EVENT_KEYBOARD,
-  
+    EVENT_NEW_QUOTE,
 
     // Timer Events
     EVENT_TIMER_KEYBOARD_POLLING,    // 20 milliseconds,    0.02 seconds

@@ -15,6 +15,7 @@ target_sources(basic_main PRIVATE
     ./basic/basic_eventloop.c
     ./basic/keyboard_module.c
     ./basic/app_module.c
+    ./basic/quote_module.c
     
     ./eventloop/event_loop.c
     ./eventloop/soft_timer.c

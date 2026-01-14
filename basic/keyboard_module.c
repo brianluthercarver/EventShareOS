@@ -72,4 +72,5 @@ void keyboard_module_control(events E, unsigned int V)
 void keyboard_module_cleanup()
 {
     terminal_cleanup();
+    printf("keyboard_module_cleanup \n");
 }

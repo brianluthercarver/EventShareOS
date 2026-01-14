@@ -32,6 +32,7 @@ typedef enum MODULES
     // ... put your module names here  MODULE_XXXXX
     MODULE_KEYBOARD,
     MODULE_APP,  
+    MODULE_QUOTE,
 
     // do not delete
     MODULE_EOL   

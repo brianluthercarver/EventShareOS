@@ -9,17 +9,17 @@ Linux system.
 
 /*****************************************************
 
-keyboard_module.h
+quote_module.h
 
 *****************************************************/
 
-#ifndef KEYBOARD_MODULE_H
-#define KEYBOARD_MODULE_H
+#ifndef QUOTE_MODULE_H
+#define QUOTE_MODULE_H
 
 #include "events.h" 
 
-void keyboard_module_init();
-void keyboard_module_control(events E, unsigned int V);
-void keyboard_module_cleanup();
+void quote_module_init();
+void quote_module_control(events C, unsigned int V);
+void quote_module_cleanup();
 
-#endif // KEYBOARD_MODULE_H
+#endif // QUOTE_MODULE_H

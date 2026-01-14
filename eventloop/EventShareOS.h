@@ -213,9 +213,41 @@ void cancel_timer(uint32_t E);
 
 
 // UNDER CONSTRUCTION
+
+/*
+Function: event_data_set_chunks(uint32_t size, uint32_t count);
+
+This sets the size and number of the data chunks.
+The base memory is statically allocated. If the data 
+chunk size and or count exceeds the static allocation, 
+a runtime error will occur.  
+*/
 void event_data_set_chunks(uint32_t size, uint32_t count);
-uint32_t enqueue_data_chunk(uint32_t C, void * chunk, uint32_t size);
-void get_data_chunk(uint32_t block_number, uint32_t module, void * data, uint32_t size);
+
+/*
+Function: enqueue_data_chunk(uint32_t E, void * chunk, uint32_t size);
+
+This places a data chunk into memory for use by other modules.
+You must provide an Event Number, a pointer the the provided data,
+and size.  If the size exceeds the data chunk size, a runtime 
+error will occur. 
+
+If the data is copied successfully, an event number will be 
+published with a block number and true will be returned. A 
+failed transfer will return false.
+
+*/
+bool enqueue_data_chunk(uint32_t E, uint8_t * chunk, uint32_t size);
+
+/*
+Function: get_data_chunk(uint32_t block_number, uint32_t module, void * data, uint32_t size);
+
+This will copy the data needed into a modules local memory with the
+provided memory pointer and size. block_numbers are a unique 
+identifier for the data chunk. If the block_number does not match 
+what is in memory, then function will return false indicating an error.  
+*/
+bool get_data_chunk(uint32_t chunk_id, uint8_t * data, uint32_t size);
 
 
 #endif // EVENT_SHARE_OS_H

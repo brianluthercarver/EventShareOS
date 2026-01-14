@@ -46,3 +46,4 @@ chunk then dynamically divided at runtime.
 #include <stdint.h>
 
 
+void event_data_clean_slot();

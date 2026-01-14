@@ -32,6 +32,7 @@ function.
 #include "events.h"
 #include "app_module.h"
 #include "keyboard_module.h"
+#include "quote_module.h"
 
 void custom_loop_init(void) {
 
@@ -41,9 +42,11 @@ void custom_loop_init(void) {
     // subscribe(MODULE_NAME, 2, EVENT_ONE, EVENT_TWO)
 
     subscribe(MODULE_KEYBOARD, 1, EVENT_TIMER_KEYBOARD_POLLING );
-    subscribe(MODULE_APP,      3, EVENT_KEYBOARD,
+    subscribe(MODULE_APP,      4, EVENT_KEYBOARD,
+                                  EVENT_NEW_QUOTE,
                                   EVENT_TIMER_APP_DEMO,
                                   EVENT_TIMER_ONE_SHOT_DEMO );
+    subscribe(MODULE_QUOTE,    1, EVENT_TIMER_APP_DEMO);                               
 
 
     // Set the soft timers
@@ -59,11 +62,17 @@ void custom_loop_init(void) {
     add_timer_event(EVENT_TIMER_APP_DEMO, 10000,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_KEYBOARD_POLLING, 100,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_ONE_SHOT_DEMO, 5000, TIMER_ONE_SHOT, TIMER_DISABLED);
-    // Now initialize the various modules in the system
     
+    
+    // Set the Data Chunk Size
+    event_data_set_chunks(160, 10);
 
+    
     app_module_init();
     keyboard_module_init();
+    quote_module_init();
+
+
 }
 
 
@@ -84,7 +93,7 @@ void custom_loop_scheduler(unsigned int module_list, events event,
 
     if (module_list & MODULE_03_MASK) {
         // call module 03 here
-        // generic_module_call_control(event, value);
+        quote_module_control(event, value);
     }
 
     if (module_list & MODULE_04_MASK) {
@@ -236,6 +245,7 @@ void custom_loop_scheduler(unsigned int module_list, events event,
 void custom_loop_quit(void) {
     app_module_cleanup();
     keyboard_module_cleanup();
+    quote_module_cleanup();
 
 }
 

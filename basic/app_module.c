@@ -8,22 +8,28 @@ Linux system.
 ************************************************************/
 
 #include <stdio.h>
+#include <string.h>
+#include <stdint.h>
 
 #include "events.h"
 #include "app_module.h"
 #include "EventShareOS.h"
 
 static int timer_count = 0;
+static char quote[160];
+static uint32_t quote_count = 0;
+
 
 void app_module_init(){
 
+    memset(quote, 0, sizeof(quote));
     enable_timer(EVENT_TIMER_ONE_SHOT_DEMO, TIMER_ENABLED);
 }
 
-void app_module_control(events C, unsigned int V) {
+void app_module_control(events E, unsigned int V) {
 
-    printf("event %d, value %i \n", C, V);
-    switch(C) {
+    printf("APP MODULE event %d, value %i \n", E, V);
+    switch(E) {
         case EVENT_KEYBOARD:
             char c = (char) V;
             printf("App Control %c \n", c);
@@ -39,7 +45,17 @@ void app_module_control(events C, unsigned int V) {
             if ((timer_count % 2) == 0) {
                 start_timer(EVENT_TIMER_ONE_SHOT_DEMO);
             }
-            printf("10 Second repeat timer\n");
+            timer_count++;
+            printf("10 Second repeat timer %i\n", timer_count);
+            break;
+
+        case EVENT_NEW_QUOTE:
+            memset(quote, 0, sizeof(quote));
+            bool pass = get_data_chunk(V, (uint8_t *) quote, sizeof(quote));
+            if (pass) {
+                quote_count++;
+                printf("New Quote %i:\n %s\n", quote_count, quote);     
+            }
             break;
 
         case EVENT_TIMER_ONE_SHOT_DEMO:
