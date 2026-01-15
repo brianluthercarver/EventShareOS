@@ -1,9 +1,9 @@
-= EventShareOS
+# EventShareOS
 
 EventShareOS is an event driven cooperative operating system for embedded devices or single threaded applications written in straight forward C code.
 
 
-== Features
+## Features
 * Event Driven
 * Soft Timers
 * Clean Interfaces for Modules
@@ -15,7 +15,7 @@ EventShareOS is an event driven cooperative operating system for embedded device
 * Event Injection for Testing
 
 
-== EventShareOS Design Overview
+## EventShareOS Design Overview
 
 EventSharedOS is an organizational structure allowing similar functionality grouped into modules. Much like a thread or process in a RTOS, a module is system sub-function.
 
@@ -26,8 +26,7 @@ Modules are passive, meaning they are only executed if a subscribed event is ava
 E stands for Event. V stands for value.
 
 
-[mermaid]
-----
+```mermaid
 graph
 Module_A -- EV --> event_loop
 Module_B -- EV --> event_loop
@@ -36,19 +35,21 @@ Module_C -- EV --> event_loop
 event_loop -- EV --> Module_A
 event_loop -- EV --> Module_B
 event_loop -- EV --> Module_C
+```
 
-----
 
-== Implementing EventShareOS
+## Implementing EventShareOS
 Implementation details and best practices for deploying EvenShare can be found here:
 
-link:./doc/implementation.adoc[Implementing EventShareOS]
+[Implementing EventShareOS](./doc/implementation.md)
 
-== Background and History of EventShareOS
+## Background and History of EventShareOS
 Details on the design philosophy of the creation of EventShareOS.
 
-link:./doc/background.adoc[EventShareOS History]
+[EventShareOS History](./doc/background.md)
 
-NOTE: EventShareOS is Copyright (c) by Brian L Carver 2026 under a MIT license. See the file: EventShareOS_License.txt
-for more details. 
 
+> **Copyright** <p> EventShareOS is Copyright (c) by Brian L Carver 2026 under a MIT license. See the file: EventShareOS_License.txt for more details. 
+
+
+[License](./EventShareOS_License.txt)

@@ -21,7 +21,7 @@ for more details.
 #include <stdint.h>
 
 void custom_loop_init(void);
-void custom_loop_scheduler(uint32_t module_list, uint32_t control, 
+void custom_loop_scheduler(uint32_t module_list, uint32_t event, 
                            uint32_t value);
 void custom_loop_quit(void);
 

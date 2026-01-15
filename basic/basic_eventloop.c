@@ -246,6 +246,5 @@ void custom_loop_quit(void) {
     app_module_cleanup();
     keyboard_module_cleanup();
     quote_module_cleanup();
-
 }
 

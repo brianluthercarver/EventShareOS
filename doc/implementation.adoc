@@ -1,6 +1,0 @@
-= Implementing EventShareOS
-Advice and best practices implementing EventShareOS on an embedded processor or a single threaded POSIX application.
-
-TODO
-
-link:../README.adoc[Back to Readme]

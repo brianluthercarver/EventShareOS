@@ -1,6 +1,0 @@
-= History and Background of EventShareOS
-
-
-TODO
-
-link:../README.adoc[Back to Readme]
