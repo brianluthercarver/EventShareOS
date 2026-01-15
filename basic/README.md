@@ -20,7 +20,7 @@ Timers are typically repeating, and to demonstrate one shot timers, ever so many
 To demonstrate data transfers between modules, the quote module will send a data string to the app module with an event.   
 
 ```[mermaid]
-graph TD
+graph
 timers --> app;
 quotes -- string --> app
 app -- start --> timers
