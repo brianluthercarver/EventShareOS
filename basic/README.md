@@ -25,7 +25,7 @@ timers --> app;
 quotes -- string --> app
 app -- start --> timers
 keyboard -- EV --> app
-app --> terminal;
+app --> terminal
 timers --> keyboard
 timers --> quotes
 ```
