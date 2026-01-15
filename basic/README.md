@@ -21,7 +21,7 @@ To demonstrate data transfers between modules, the quote module will send a data
 
 ```mermaid
 graph
-timers --> app;
+timers --> app
 quotes -- string --> app
 app -- start --> timers
 keyboard -- EV --> app
