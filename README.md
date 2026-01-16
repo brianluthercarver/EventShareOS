@@ -8,22 +8,27 @@ EventShareOS is an event driven cooperative operating system for embedded device
 * Soft Timers
 * Clean Interfaces for Modules
 * Block Data transfers between Modules
-* Performance Monitoring
 * Portability 
-* Serial Connectivity 
-* Network Connectivity
 * Event Injection for Testing
+* ~~Unit Testing of OS Functions~~
+* ~~Constant Integration Testing~~
+* ~~Version and Build Control~~
+* ~~Performance Monitoring~~
+* ~~Serial Connectivity~~ 
+* ~~Network Connectivity~~
+* ~~Serial and Network Protocol~~
 
+~~Strikethrough~~ features are not implemented at this time.
 
 ## EventShareOS Design Overview
 
 EventSharedOS is an organizational structure allowing similar functionality grouped into modules. Much like a thread or process in a RTOS, a module is system sub-function.
 
-The passing of data between modules is through events. An event is captured as a pair called E,V unit.
+The passing of data between modules is through events. An event is captured as a pair called E,V unit. A Value is passed with the event. The value is an unsigned 32 bit number. Based on the event type, it's easy to overload the 4 bytes into other types. E stands for Event. V stands for value.
 
 Modules are passive, meaning they are only executed if a subscribed event is available. 
 
-E stands for Event. V stands for value.
+
 
 
 ```mermaid
