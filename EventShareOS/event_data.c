@@ -73,15 +73,11 @@ the data memory.
 void set_memory_pointers() {
 
     uint8_t * memory_index = data_memory;
-    //printf("set_memory_pointers %i \n", total_data_slots);
     for (uint32_t i = 0; i < total_data_slots; i++) {
         clear_slot(i);
         data_tracker[i].address =  memory_index;
-        //printf("%i Data memory pointer %p ", i, (void *)memory_index);
         memory_index += data_chunk_size * sizeof(uint8_t);
-        
     }
-    printf("\n");
 }
 
 /*
@@ -146,23 +142,21 @@ bool enqueue_data_chunk(uint32_t E, uint8_t * chunk, uint32_t size) {
     bool pass = false;
     uint32_t block_number = block_number_id;
     uint32_t slot_number = 0;
- 
-    printf("enqueue_data_chunk %i %i", E, size);
 
     if (size < data_chunk_size) {
         // Check for an empty slot
         if (data_tracker[next_empty_slot].clean) {
-                // empty slot found
-                uint32_t id = (block_number_id << 16) | next_empty_slot;
-                data_tracker[next_empty_slot].id = id;
-                data_tracker[next_empty_slot].clean = false;
-                data_tracker[next_empty_slot].size = size;               
-                memcpy(data_tracker[next_empty_slot].address, chunk, size);
-                //total_slots_used++;
-                block_number_id++;
-                publish_event(E, id);
-                find_next_empty_slot();
-                pass = true;
+            // empty slot found
+            uint32_t id = (block_number_id << 16) | next_empty_slot;
+            data_tracker[next_empty_slot].id = id;
+            data_tracker[next_empty_slot].clean = false;
+            data_tracker[next_empty_slot].size = size;               
+            memcpy(data_tracker[next_empty_slot].address, chunk, size);
+            //total_slots_used++;
+            block_number_id++;
+            publish_event(E, id);
+            find_next_empty_slot();
+            pass = true;
         }
     }
     else {
