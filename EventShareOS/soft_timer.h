@@ -16,7 +16,7 @@ called for an existing timer, the existing setup will be
 overwritten by the new parameters.
 ************************************************************/
 
-#ifndef  TIMER_H
+#ifndef TIMER_H
 #define TIMER_H
 
 
@@ -25,8 +25,7 @@ overwritten by the new parameters.
 #include <stdint.h>
 
 
-typedef struct TIMER_EVENT
-{
+typedef struct TIMER_EVENT {
     uint32_t control;
     uint16_t time;
     uint16_t count_down;
@@ -34,7 +33,7 @@ typedef struct TIMER_EVENT
     uint8_t enabled;
 } timer_event;
 
-void timer_init();
+
 void time_keeper();
 
 

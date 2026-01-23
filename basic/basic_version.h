@@ -7,21 +7,11 @@ basic is an example program using EventShareOS in a POSIX
 Linux system. 
 ************************************************************/
 
+#ifndef BASIC_VERSION_H
+#define BASIC_VERSION_H
 
-/*****************************************************
+#define BASIC_VERSION_MAJOR 0
+#define BASIC_VERSION_MINOR 1
+#define BASIC_VERSION_BUILD 1
 
-app_module.h
-
-*****************************************************/
-
-#ifndef APP_MODULE_H
-#define APP_MODULE_H
-
-#include "events.h" 
-
-void app_module_init();
-void app_module_control(events E, unsigned int V);
-void app_module_cleanup();
-
-#endif // APP_MODULE_H
-
+#endif // BASIC_VERSION_H

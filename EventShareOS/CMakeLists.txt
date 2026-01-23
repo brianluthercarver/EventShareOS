@@ -1,11 +1,5 @@
 # EventShareOS Library
 
-set(EVENTSHAREOS_VERSION "0.1.0")
-
-#set_target_properties(EventShareOS PROPERTIES
-#    VERSION ${EVENTSHAREOS_VERSION}
-#    SOVERSION 2
-#    )
 
 add_library(EventShareOS
     EventShareOS.h
@@ -15,16 +9,20 @@ add_library(EventShareOS
     performance.h
     posix_timer.h
     soft_timer.h
-    version.h
+    buildversion.h
+    event_version.h
+    versioning.h
     event_data.c
     event_loop.c
     performance.c
     posix_timer.c
     soft_timer.c
-    )
+    event_version.c
+    versioning.c
+)
 
 target_include_directories(EventShareOS
     PUBLIC
     ${CMAKE_CURRENT_SOURCE}
-    )
+)
 

@@ -3,7 +3,7 @@ EventShareOS is Copyright (c) by Brian L Carver 2026
 under a MIT license. See the file: EventShareOS_License.txt
 for more details. 
 
-basic is an example program using EvenShareOS in a POSIX 
+basic is an example program using EventShareOS in a POSIX 
 Linux system. 
 ************************************************************/
 
@@ -22,9 +22,11 @@ function.
 
 *****************************************************/
 #include <stdio.h>
+#include <string.h>
 
 #include "EventShareOS.h"
 #include "custom_event_loop.h"
+#include "versioning.h"
 
 
 // Put the various modules include code here
@@ -33,8 +35,17 @@ function.
 #include "app_module.h"
 #include "keyboard_module.h"
 #include "quote_module.h"
+#include "basic_version.h"
 
 void custom_loop_init(void) {
+
+    // Set the application version here, remember to include
+    // versioning.h
+    char version_string[20];
+    memset(version_string, 0, sizeof(version_string));
+    set_app_version(BASIC_VERSION_MAJOR, BASIC_VERSION_MINOR, BASIC_VERSION_BUILD);
+    get_app_version_string(version_string, sizeof(version_string));
+    printf("Basic EventShareOS Demo program version %s\n", version_string);
 
     // Set subscriptions for each module
     // The parameters are MODULE_NAME, subscription_count, events

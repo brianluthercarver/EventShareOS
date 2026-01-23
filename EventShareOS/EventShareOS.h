@@ -176,6 +176,12 @@ void signal_quit();
 
 // Timer Functions:
 
+/*
+Function: void timer_init()
+
+The soft timers need initialization and this must be run. */
+void timer_init();
+
 /* 
 Function: add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on_off);
 
@@ -248,6 +254,16 @@ identifier for the data chunk. If the block_number does not match
 what is in memory, then function will return false indicating an error.  
 */
 bool get_data_chunk(uint32_t chunk_id, uint8_t * data, uint32_t size);
+
+
+
+/*
+Function: void event_version_string(char * return_buffer, uint32_t size ) 
+
+This will provide application code if needed the version string of the 
+EventShareOS. No other support for a version number will be provided.
+*/
+void event_version_string(char * return_buffer, uint32_t size );
 
 
 #endif // EVENT_SHARE_OS_H
