@@ -12,7 +12,8 @@ EventShareOS is an event driven cooperative operating system for embedded device
 * Event Injection for Testing
 * ~~Unit Testing of OS Functions~~
 * ~~Constant Integration Testing~~
-* ~~EventShareOS Versioning~~
+* EventShareOS Versioning
+* Application Versioning
 * ~~Performance Monitoring~~
 * ~~Serial Connectivity~~ 
 * ~~Network Connectivity~~

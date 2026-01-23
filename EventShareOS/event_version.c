@@ -26,16 +26,13 @@ void event_version_string(char * return_buffer, uint32_t buffer_size ) {
     char minor[] = EVENTSHAREOS_MINOR;
     char build[] = EVENTSHAREOS_BUILD;
     uint32_t size = sizeof(version_string);
-
-    if (buffer_size < version_string) {
-        size = buffer_size;
-    }
-
     memset(version_string,0,sizeof(version_string));
 
+    if (buffer_size < size) {
+        size = buffer_size;
+    }
     // build the string
     snprintf(version_string, sizeof(version_string), "%s.%s.%s", major, minor, build);
-    
     memcpy(return_buffer, version_string, size);
 }
 

@@ -4,7 +4,7 @@
 
 rm -fv build_version.h
 
-build_version_string=$(git describe --tags --always --dirty --match "v*")
+build_version_string=$(git describe --tags --always --match "v*")
 echo $build_version_string
 
 leading="#define EVENTSHAREOS_BUILD \"" 
