@@ -8,6 +8,15 @@ cmake_install.cmake
 
 
 # build outputs
-basic_main
+
 build/
 target/
+
+basic_main
+basic_main/binary_dir
+
+test/binary_dir/
+
+
+# targets
+libEventShareOS.a

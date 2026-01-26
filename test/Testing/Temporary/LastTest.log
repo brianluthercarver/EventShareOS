@@ -1,0 +1,24 @@
+Start testing: Jan 26 09:28 EST
+----------------------------------------------------------
+1/1 Testing: app_versioning
+1/1 Test: app_versioning
+Command: "/home/brian/code/c_code/EventShareOS/test/TestAppVersion"
+Directory: /home/brian/code/c_code/EventShareOS/test
+"app_versioning" start time: Jan 26 09:28 EST
+Output:
+----------------------------------------------------------
+/home/brian/code/c_code/EventShareOS/test/tests/test_versioning.c:50:test_set_get_string:PASS
+/home/brian/code/c_code/EventShareOS/test/tests/test_versioning.c:51:test_compare_number:PASS
+
+-----------------------
+2 Tests 0 Failures 0 Ignored 
+OK
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"app_versioning" end time: Jan 26 09:28 EST
+"app_versioning" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 26 09:28 EST

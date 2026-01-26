@@ -9,7 +9,7 @@ add_library(EventShareOS
     performance.h
     posix_timer.h
     soft_timer.h
-    buildversion.h
+    build_version.h
     event_version.h
     versioning.h
     event_data.c
