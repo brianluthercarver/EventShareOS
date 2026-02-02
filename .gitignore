@@ -16,6 +16,7 @@ target/
 basic_main
 basic_main/binary_dir
 
+test/CTestTestfile.cmake
 test/binary_dir/
 test/testing
 
