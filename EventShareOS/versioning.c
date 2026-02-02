@@ -45,8 +45,8 @@ void get_app_version_string(char * version_string, uint32_t string_size) {
 
 int32_t compare_with_app_version(uint32_t major, uint32_t minor, uint32_t build) {
     int32_t answer = 0;
-    uint32_t app = (app_version.major * 1000) + (app_version.minor * 100) + app_version.build;
-    uint32_t compare = (major * 1000) + (minor*100) + build;
+    uint32_t app = (app_version.major * 10000) + (app_version.minor * 1000) + app_version.build;
+    uint32_t compare = (major * 10000) + (minor*1000) + build;
 
     if (app < compare ) {
         answer = -1;
@@ -62,8 +62,8 @@ int32_t compare_with_app_version(uint32_t major, uint32_t minor, uint32_t build)
 
 int32_t compare_versions(const version_info * version1, const version_info * version2) {
     int32_t answer = 0;
-    uint32_t app = (version1->major * 1000) + (version1->minor * 100) + version1->build;
-    uint32_t compare = (version2->major * 1000) + (version2->minor * 100) + version2->build;
+    uint32_t app = (version1->major * 10000) + (version1->minor * 1000) + version1->build;
+    uint32_t compare = (version2->major * 10000) + (version2->minor * 1000) + version2->build;
 
     if (app < compare ) {
         answer = -1;

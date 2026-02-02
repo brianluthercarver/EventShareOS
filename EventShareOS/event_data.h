@@ -39,11 +39,32 @@ example, if you have two data structs one is 8 bytes the other
 is 12 bytes, then the minimum size for a data block is 12. 
 
 Data block structure is statically allocated as one large 
-chunk then dynamically divided at runtime. 
+block then dynamically divided at runtime. 
 
 ************************************************************/
 
 #include <stdint.h>
 
 
+/*
+Function: event_data_clean_slot()
+
+Clears the latest used block after the event is sent.
+It's the programmers responsibility to capture the data
+when the event is received.
+*/
 void event_data_clean_slot();
+
+/*
+Function: event_data_blocks_used()
+
+Returns the current number of blocks queued.
+*/
+uint32_t event_data_blocks_used();
+
+/*
+Function: event_data_blocks_free()
+
+Returns the number of empty blocks
+*/
+uint32_t event_data_blocks_free();

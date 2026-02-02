@@ -8,6 +8,7 @@ cmake_install.cmake
 
 
 # build outputs
+*.a
 
 build/
 target/
@@ -16,6 +17,7 @@ basic_main
 basic_main/binary_dir
 
 test/binary_dir/
+test/testing
 
 
 # targets

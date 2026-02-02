@@ -221,14 +221,13 @@ void cancel_timer(uint32_t E);
 // UNDER CONSTRUCTION
 
 /*
-Function: event_data_set_chunks(uint32_t size, uint32_t count);
+Function: event_data_init_memory();
 
-This sets the size and number of the data chunks.
-The base memory is statically allocated. If the data 
-chunk size and or count exceeds the static allocation, 
-a runtime error will occur.  
+This initializes the memory and queue for use. The size and 
+queue length are set in EventShareOS_config.h or in 
+custom_event_config.h.
 */
-void event_data_set_chunks(uint32_t size, uint32_t count);
+void event_data_init_memory();
 
 /*
 Function: enqueue_data_chunk(uint32_t E, void * chunk, uint32_t size);
@@ -243,7 +242,7 @@ published with a block number and true will be returned. A
 failed transfer will return false.
 
 */
-bool enqueue_data_chunk(uint32_t E, uint8_t * chunk, uint32_t size);
+uint32_t enqueue_data_chunk(uint32_t E, uint8_t * chunk, uint32_t size);
 
 /*
 Function: get_data_chunk(uint32_t block_number, uint32_t module, void * data, uint32_t size);

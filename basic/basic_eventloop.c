@@ -74,11 +74,6 @@ void custom_loop_init(void) {
     add_timer_event(EVENT_TIMER_KEYBOARD_POLLING, 100,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_ONE_SHOT_DEMO, 5000, TIMER_ONE_SHOT, TIMER_DISABLED);
     
-    
-    // Set the Data Chunk Size
-    event_data_set_chunks(160, 10);
-
-    
     app_module_init();
     keyboard_module_init();
     quote_module_init();

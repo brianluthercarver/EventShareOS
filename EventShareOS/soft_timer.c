@@ -20,15 +20,13 @@ static timer_event timer_events[MAX_TIME_EVENTS];
 
 static uint32_t timer_events_min = 0;
 static uint32_t timer_events_max = 0;
-static uint32_t timer_modules_min = 0;
-static uint32_t timer_modules_max = 0;
 
 void timer_init()
 {
     memset(timer_events, 0, sizeof(timer_events));
     main_time = 0;
     timer_events_max = get_max_events();
-    timer_modules_max = get_max_modules();
+
 }
 
 
@@ -37,7 +35,7 @@ void time_keeper()
     ++main_time; // update the millisecond timer
     // decrement all the countdown timers
     // and check for an event
-    for (int i = 0; i < max_events; i++)
+    for (uint32_t i = 0; i < max_events; i++)
     {
         if ( timer_events[i].enabled == TIMER_ENABLED )
         {
@@ -75,7 +73,7 @@ void update_timer_event(int i, uint32_t C, uint16_t milliseconds, bool timer_typ
 
 void add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on_off)
 {
-    int i = 0;
+    uint32_t i = 0;
     bool not_done = true;
 
     // check for first time add
@@ -119,7 +117,7 @@ void add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on
 void start_timer(uint32_t E)
 {
     if ((E > timer_events_min) && (E < timer_events_max)) {
-        for (int i = 0; i < max_events; i++)
+        for (uint32_t i = 0; i < max_events; i++)
         {
             if (timer_events[i].control == E )
             {
@@ -136,7 +134,7 @@ void start_timer(uint32_t E)
 void cancel_timer(uint32_t E)
 {
     if ((E > timer_events_min) && (E < timer_events_max)) {
-        for (int i = 0; i < max_events; i++)
+        for (uint32_t i = 0; i < max_events; i++)
         {
             if (timer_events[i].control == E )
             {
@@ -157,7 +155,7 @@ void cancel_timer(uint32_t E)
 void enable_timer(uint32_t E, bool on_off)
 {
     if ((E > timer_events_min) && (E < timer_events_max)) {
-        for (int i = 0; i < max_events; i++)
+        for (uint32_t i = 0; i < max_events; i++)
         {
             if (timer_events[i].control == E )
             {

@@ -44,6 +44,7 @@ int main(int argc, char *argv[]) {
     timer_init();
     event_loop_init();
     init_poll_time_keeper();
+    event_data_init_memory();
 
     while(event_loop_running()) {
         poll_time_keeper();

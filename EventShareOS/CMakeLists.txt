@@ -3,6 +3,8 @@
 
 add_library(EventShareOS
     EventShareOS.h
+    #EventShare_config.h
+
     custom_event_loop.h
     event_data.h
     event_loop.h
@@ -12,6 +14,7 @@ add_library(EventShareOS
     build_version.h
     event_version.h
     versioning.h
+
     event_data.c
     event_loop.c
     performance.c

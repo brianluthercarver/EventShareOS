@@ -2,6 +2,7 @@
 
 
 add_library(Unity
+    unity_internals.h
     unity.h
     unity.c
 )
