@@ -53,7 +53,7 @@ These function are defined in custom_event_loop.h.
 #### custom_loop_init
 The init function has three sections. In the first section modules subscribe to the various events defined as a  enumeration in events.h file.  
 
-```c
+```C
     subscribe(MODULE_KEYBOARD, 1, EVENT_TIMER_KEYBOARD_POLLING );
     subscribe(MODULE_APP,      4, EVENT_KEYBOARD,
                                   EVENT_NEW_QUOTE,
@@ -62,16 +62,15 @@ The init function has three sections. In the first section modules subscribe to 
     subscribe(MODULE_QUOTE,    1, EVENT_TIMER_APP_DEMO); 
 ```
 The second section covers the soft timers. 
-```c
+```C
     add_timer_event(EVENT_TIMER_APP_DEMO, 10000,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_KEYBOARD_POLLING, 100,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_ONE_SHOT_DEMO, 5000, TIMER_ONE_SHOT, TIMER_DISABLED);
-  
 ```
 
 The third section is the initialization code for the various modules.
 
-```c
+```C
     app_module_init();
     keyboard_module_init();
     quote_module_init();
@@ -80,7 +79,7 @@ The third section is the initialization code for the various modules.
 #### custom_loop_scheduler
 The custom_loop_scheduler takes a module list as a bit mask then runs the correct module.  It's important that the module enumeration matches the position in the module position. 
 
-```c
+```C
     if (module_list & MODULE_01_MASK) {
         // call module 01 here
         keyboard_module_control(event, value);
@@ -91,7 +90,7 @@ Since the keyboard is the most time critical module it is placed first.
 #### custom_loop_quit
 When a quit signal is detected all the closing functions are called by EventShareOS.  This is much like a destructor function for a C++ class.  In this example, the quote module prints out a goodbye quote.
 
-```c
+```C
 void custom_loop_quit(void) {
     app_module_cleanup();
     keyboard_module_cleanup();
