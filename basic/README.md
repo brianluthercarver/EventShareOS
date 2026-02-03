@@ -63,7 +63,7 @@ The init function has three sections. In the first section modules subscribe to 
 ```
 The second section covers the soft timers. 
 ```c
-  add_timer_event(EVENT_TIMER_APP_DEMO, 10000,  TIMER_REPEAT, TIMER_ENABLED);
+    add_timer_event(EVENT_TIMER_APP_DEMO, 10000,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_KEYBOARD_POLLING, 100,  TIMER_REPEAT, TIMER_ENABLED);
     add_timer_event(EVENT_TIMER_ONE_SHOT_DEMO, 5000, TIMER_ONE_SHOT, TIMER_DISABLED);
   

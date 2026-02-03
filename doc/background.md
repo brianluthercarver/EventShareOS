@@ -83,10 +83,8 @@ Events consisted of a pair of unsigned integers: Event and Value. E and V were s
 
 EventShareOS has large block data sharing. Large chunks can be sent between modules with an associated event number. 
 
-### ~~Version Control~~
-*Not Implemented*
-
-EventShareOS will be under version control and build control.  Since this an integrated system, application version and build will be under the same grouping of functions. This is to ease the burden of versioning for implementations and control. 
+### Version Control
+EventShareOS will be under version control and build control.  Since this an integrated system, functions are provided for the application. This is to ease the burden of versioning for implementations and control. 
 
 ### ~~Performance Monitoring~~
 *Not Implemented*
@@ -121,6 +119,7 @@ Network connectivity will support implementation specific protocols by supplying
 The serial port and any network connectivity will share the same protocol for sending events, large data blocks, and implementation specific protocols. By standardizing the same protocol between the serial port the same parser can be used. 
 
 
+[Back to Implementation](./implementation.md)
 [Back to Readme](../README.adoc)
 
 
