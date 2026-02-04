@@ -12,6 +12,6 @@ Linux system.
 
 #define BASIC_VERSION_MAJOR 0
 #define BASIC_VERSION_MINOR 1
-#define BASIC_VERSION_BUILD 1
+#define BASIC_VERSION_BUILD 2
 
 #endif // BASIC_VERSION_H

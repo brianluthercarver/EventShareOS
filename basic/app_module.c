@@ -45,7 +45,6 @@ void app_module_control(events E, unsigned int V) {
             if ((timer_count % 2) == 0) {
                 start_timer(EVENT_TIMER_ONE_SHOT_DEMO);
             }
-            timer_count++;
             printf("10 Second repeat timer %i\n", timer_count);
             break;
 

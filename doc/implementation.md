@@ -152,6 +152,9 @@ The switch module would look like this:
 ```
 Every 20 miliseconds the state of the switch is read. Depending on the prior state, the on or off event is sent.
 
+## POSIX Single Threaded Systems
+While code written in C and C++ supports threaded application, there is a simplicity in a single threaded application knowing there will not be any race conditions. EventShareOS provides a structured environment for a multi-module application without race conditions. See more discussion in [Design Compromises](./design_compromises.md).
+
 [Back to Readme](../README.adoc)
 
 > **Copyright** <p> EventShareOS is Copyright (c) by Brian L Carver 2026 under a MIT license. See the file: EventShareOS_License.txt for more details. 
