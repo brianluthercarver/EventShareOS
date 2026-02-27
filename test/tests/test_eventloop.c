@@ -13,16 +13,19 @@ File: test_eventloop.c
 #include "custom_event_loop.h"
 
 
-custom_loop_init(void) {
+void custom_loop_init(void) {
 
 }
 
-custom_loop_scheduler(uint32_t module_list, uint32_t event, 
+void custom_loop_scheduler(uint32_t module_list, uint32_t event, 
                            uint32_t value) {
+    module_list = module_list;
+    event = event;
+    value = value;                        
 
 }
 
 
-custom_loop_quit(void) {
+void custom_loop_quit(void) {
 
 }

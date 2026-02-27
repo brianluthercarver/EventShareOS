@@ -20,6 +20,7 @@ File: event_data.c
 #include "event_data.h"
 #include "EventShareOS.h"
 #include "EventShareOS_config.h"
+#include "EventShareOS_test.h"
 
 
 #define EVENT_DATA_NO_NEED_TO_CLEAN  0xFFFFFFFF

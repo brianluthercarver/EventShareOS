@@ -1,31 +1,33 @@
 # EventShareOS Library
 
+project(EventShareOS)
+
+
 
 add_library(EventShareOS
     EventShareOS.h
+    EventShareOS_test.h    # Used only for testing
     #EventShare_config.h
-
     custom_event_loop.h
-    event_data.h
-    event_loop.h
-    performance.h
     posix_timer.h
-    soft_timer.h
-    build_version.h
-    event_version.h
     versioning.h
 
-    event_data.c
-    event_loop.c
-    performance.c
-    posix_timer.c
-    soft_timer.c
-    event_version.c
-    versioning.c
+    inc/event_data.h
+
+    src/event_data.c
+    src/event_loop.c
+    src/performance.c
+    src/posix_timer.c
+    src/soft_timer.c
+    src/event_version.c
+    src/versioning.c
 )
 
 target_include_directories(EventShareOS
     PUBLIC
-    ${CMAKE_CURRENT_SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/inc
+    
 )
 

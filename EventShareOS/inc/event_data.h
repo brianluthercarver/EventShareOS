@@ -55,16 +55,3 @@ when the event is received.
 */
 void event_data_clean_slot();
 
-/*
-Function: event_data_blocks_used()
-
-Returns the current number of blocks queued.
-*/
-uint32_t event_data_blocks_used();
-
-/*
-Function: event_data_blocks_free()
-
-Returns the number of empty blocks
-*/
-uint32_t event_data_blocks_free();

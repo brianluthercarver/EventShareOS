@@ -15,7 +15,7 @@ File: test_data_queue.c
 
 #include "unity.h"
 #include "EventShareOS.h"
-#include "event_data.h"
+#include "EventShareOS_test.h"
 
 
 void setUp(void) {
