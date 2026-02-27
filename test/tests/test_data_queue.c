@@ -157,8 +157,8 @@ void test_queue_size_count() {
     uint32_t expected = 12;
     
     // Get the current block allocation
-    total_blocks = event_data_blocks_free();
-    used_blocks = event_data_blocks_used();
+    total_blocks = test_event_data_blocks_free();
+    used_blocks = test_event_data_blocks_used();
     printf("total_blocks %i used_blocks %i expected %i\n", total_blocks, used_blocks, expected);
 
     TEST_ASSERT(used_blocks == 0);
@@ -170,8 +170,8 @@ void test_queue_size_count() {
     }
 
     // check results;
-    used_blocks = event_data_blocks_used();
-    free_blocks = event_data_blocks_free();
+    used_blocks = test_event_data_blocks_used();  
+    free_blocks = test_event_data_blocks_free();
     printf("total_blocks %i used_blocks %i free_blocks %i\n", total_blocks, used_blocks, free_blocks);
 
     TEST_ASSERT_EQUAL((total_blocks-expected), free_blocks);

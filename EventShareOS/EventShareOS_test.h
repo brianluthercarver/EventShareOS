@@ -20,18 +20,39 @@ to testing. They are not meant for production use.
 #include <stdint.h>
 
 /*
-Function: event_data_blocks_used()
+Function: test_event_data_blocks_used()
 
 Returns the current number of blocks queued.
 */
-uint32_t event_data_blocks_used();
+uint32_t test_event_data_blocks_used();
 
 /*
-Function: event_data_blocks_free()
+Function: test_event_data_blocks_free()
 
 Returns the number of empty blocks
 */
-uint32_t event_data_blocks_free();
+uint32_t test_event_data_blocks_free();
 
+
+/*
+Funciton: test_get_current_queue_count()
+
+Returns the current number of items in the event queue
+*/
+uint32_t test_get_current_queue_count();
+
+/*
+Function: void test_clear_queue()
+
+CLears the event queue of items. 
+*/
+void test_clear_queue();
+
+/*
+Function: test_module_count_per_event(event)
+
+Returns the number of modules subscribed to an event
+*/
+uint32_t test_module_count_per_event(uint32_t event);
 
 #endif // EVENTSHAREOS_TEST_H
