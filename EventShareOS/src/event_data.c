@@ -20,6 +20,7 @@ File: event_data.c
 #include "event_data.h"
 #include "EventShareOS.h"
 #include "EventShareOS_config.h"
+#include "EventShareOS_test.h"
 
 
 #define EVENT_DATA_NO_NEED_TO_CLEAN  0xFFFFFFFF
@@ -199,10 +200,10 @@ void event_data_clean_slot() {
     }
 }
 
-uint32_t event_data_blocks_used() {
-    return (total_slots_used);
+uint32_t test_event_data_blocks_used() {
+    return (total_slots_used);  
 }
 
-uint32_t event_data_blocks_free() {
+uint32_t test_event_data_blocks_free() {
     return(EVENT_DATA_QUEUE_SIZE-total_slots_used);
 }

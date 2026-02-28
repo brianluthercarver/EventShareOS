@@ -32,6 +32,7 @@ static uint32_t subscriptions[MAX_SUBSCRIPTION_SIZE];
 static control_value event_queue[MAX_QUEUE_SIZE];
 static uint32_t head = 0;
 static uint32_t tail = 0;
+static uint32_t queue_count = 0;
 static bool queue_available = true;
 static bool running_status = true;
 
@@ -81,6 +82,7 @@ void event_loop_scheduler(void)
         // clear the item out of the queue
     	event_queue[head].event = events_min;
     	event_queue[head].value = 0;
+        queue_count--;
 
         // move the head pointer
         ++head;
@@ -123,6 +125,7 @@ void publish_event(uint32_t E, unsigned int V)
     // printf("event %d, value %i \n", E, V);
     if (queue_available)
     {
+        queue_count++;
         event_queue[tail].event = E;
         event_queue[tail].value = V;
 
@@ -158,3 +161,27 @@ bool event_loop_running()
 
 
 
+// Test Functions, These are strictly used for unit testing
+
+uint32_t test_get_current_queue_count() {
+    return(queue_count);
+}
+
+void test_clear_queue() {
+    memset(event_queue, 0, sizeof(event_queue));
+    head = 0;
+    tail = 0;   
+}
+
+uint32_t test_module_count_per_event(uint32_t event) {
+    uint32_t count = 0;
+    uint32_t sub = subscriptions[event];
+    for (int i = 0; i < 32; i++) {
+        uint32_t e = sub & 0x00000001;
+        sub = sub >> 1;
+        if (e) {
+            count++;
+        }    
+    }
+    return(count);
+}

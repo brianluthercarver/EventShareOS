@@ -1,6 +1,3 @@
-#ifndef EVENT_SHARE_OS_H
-#define EVENT_SHARE_OS_H
-
 /************************************************************
 EventShareOS is Copyright (c) by Brian L Carver 2026
 under a MIT license. See the file: EventShareOS_License.txt
@@ -19,6 +16,12 @@ This is the needed header file to access the functions provided
 by EventShareOS. 
 
 ************************************************************/
+
+
+#ifndef EVENT_SHARE_OS_H
+#define EVENT_SHARE_OS_H
+
+
 
 // standard libary includes
 #include <stdbool.h>
@@ -218,7 +221,6 @@ on network responses.
 void cancel_timer(uint32_t E);
 
 
-// UNDER CONSTRUCTION
 
 /*
 Function: event_data_init_memory();
@@ -263,6 +265,9 @@ This will provide application code if needed the version string of the
 EventShareOS. No other support for a version number will be provided.
 */
 void event_version_string(char * return_buffer, uint32_t size );
+
+
+// UNDER CONSTRUCTION
 
 
 #endif // EVENT_SHARE_OS_H
