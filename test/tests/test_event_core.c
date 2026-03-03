@@ -47,11 +47,11 @@ void setUp(void) {
 
     printf("test_event_core setUp\n");
     // setup code
-    event_loop_set_events_range(EVENT_EOL);
-    event_loop_set_modules_range(MODULE_EOL);
+    event_core_set_events_range(EVENT_EOL);
+    event_core_set_modules_range(MODULE_EOL);
 
     event_data_init_memory();
-    event_loop_init();
+    event_core_init();
 }
 
 void tearDown(void) {

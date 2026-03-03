@@ -8,7 +8,7 @@ add_library(EventShareOS
     EventShareOS.h
     EventShareOS_test.h    # Used only for testing
     #EventShare_config.h
-    custom_event_loop.h
+    custom_event_core.h
     posix_timer.h
     versioning.h
 

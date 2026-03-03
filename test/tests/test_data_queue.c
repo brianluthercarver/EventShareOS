@@ -23,7 +23,7 @@ void setUp(void) {
     // setup code
     // 32 slots at 32 bytes = 1024 bytes
     event_data_init_memory();
-    event_loop_init();
+    event_core_init();
 }
 
 void tearDown(void) {

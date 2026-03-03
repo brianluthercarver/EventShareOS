@@ -18,7 +18,7 @@ include_directories(../EventShareOS)
 include_directories(./Unity)
 
 # Event Data Test
-add_executable(TestDataQueue "./tests/test_data_queue.c" "./tests/test_eventloop.c") 
+add_executable(TestDataQueue "./tests/test_data_queue.c" "./tests/test_event_base.c") 
 
 add_test(NAME test_data_queue COMMAND TestDataQueue)
 
@@ -32,7 +32,7 @@ PRIVATE
 )
 
 # Versioning Test
-add_executable(TestAppVersion "./tests/test_versioning.c" "./tests/test_eventloop.c")
+add_executable(TestAppVersion "./tests/test_versioning.c" "./tests/test_event_base.c")
 
 add_test(NAME test_app_versioning COMMAND TestAppVersion)
 
@@ -47,7 +47,7 @@ PRIVATE
 
 
 # EventShare Core Test
-add_executable(TestEventCore "./tests/test_event_core.c" "./tests/test_eventloop.c")
+add_executable(TestEventCore "./tests/test_event_core.c" "./tests/test_event_base.c")
 
 add_test(NAME test_event_core COMMAND TestEventCore)
 

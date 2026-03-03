@@ -10,14 +10,14 @@ File: test_eventloop.c
 
 #include <stdint.h>
 
-#include "custom_event_loop.h"
+#include "custom_event_core.h"
 
 
-void custom_loop_init(void) {
+void custom_core_init(void) {
 
 }
 
-void custom_loop_scheduler(uint32_t module_list, uint32_t event, 
+void custom_core_scheduler(uint32_t module_list, uint32_t event, 
                            uint32_t value) {
     module_list = module_list;
     event = event;
@@ -26,6 +26,6 @@ void custom_loop_scheduler(uint32_t module_list, uint32_t event,
 }
 
 
-void custom_loop_quit(void) {
+void custom_core_quit(void) {
 
 }
