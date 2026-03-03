@@ -18,20 +18,44 @@ include_directories(../EventShareOS)
 include_directories(./Unity)
 
 # Event Data Test
-add_executable(TestDataQueue "./tests/test_data_queue.c" ./tests/test_eventloop.c) 
+add_executable(TestDataQueue "./tests/test_data_queue.c" "./tests/test_eventloop.c") 
 
 add_test(NAME test_data_queue COMMAND TestDataQueue)
 
 target_link_libraries(TestDataQueue PUBLIC EventShareOS)
 target_link_libraries(TestDataQueue PUBLIC Unity)
 
+target_include_directories(TestDataQueue
+PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
+    ${CMAKE_CURRENT_SOURCE_DIR}./Unity
+)
+
 # Versioning Test
-add_executable(TestAppVersion "./tests/test_versioning.c")
+add_executable(TestAppVersion "./tests/test_versioning.c" "./tests/test_eventloop.c")
 
 add_test(NAME test_app_versioning COMMAND TestAppVersion)
 
 target_link_libraries(TestAppVersion PUBLIC EventShareOS)
 target_link_libraries(TestAppVersion PUBLIC Unity)
 
+target_include_directories(TestAppVersion
+PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
+    ${CMAKE_CURRENT_SOURCE_DIR}./Unity
+)
 
 
+# EventShare Core Test
+add_executable(TestEventCore "./tests/test_event_core.c" "./tests/test_eventloop.c")
+
+add_test(NAME test_event_core COMMAND TestEventCore)
+
+target_link_libraries(TestEventCore PUBLIC EventShareOS)
+target_link_libraries(TestEventCore PUBLIC Unity)
+
+target_include_directories(TestEventCore
+PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
+    ${CMAKE_CURRENT_SOURCE_DIR}./Unity
+)

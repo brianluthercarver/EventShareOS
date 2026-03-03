@@ -33,6 +33,12 @@ Returns the number of empty blocks
 */
 uint32_t test_event_data_blocks_free();
 
+/*
+Function: uint32_t test_get_max_queue_size()
+
+Returns the maximum slots for events
+*/
+uint32_t test_get_max_queue_size();
 
 /*
 Funciton: test_get_current_queue_count()

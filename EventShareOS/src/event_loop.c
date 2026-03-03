@@ -63,6 +63,7 @@ void event_loop_init(void)
     memset(event_queue, 0, sizeof(event_queue));
     head = 0;
     tail = 0;
+    queue_count = 0;
     custom_loop_init();
 }
 
@@ -134,14 +135,14 @@ void publish_event(uint32_t E, unsigned int V)
         if (tail == MAX_QUEUE_SIZE)
         {
             tail = 0;
-            if (tail == head)
-            {
-                queue_available = false;  // full queue
-            }
         }
-        else if ( tail == head )
+        if ( tail == head )
         {
             queue_available = false; // full queue
+        }
+        else if (queue_count == MAX_QUEUE_SIZE)
+        {
+            queue_available = false;  // full queue
         }
     }
 }
@@ -163,6 +164,10 @@ bool event_loop_running()
 
 // Test Functions, These are strictly used for unit testing
 
+uint32_t test_get_max_queue_size() {
+    return(MAX_QUEUE_SIZE);
+}
+
 uint32_t test_get_current_queue_count() {
     return(queue_count);
 }
@@ -171,6 +176,7 @@ void test_clear_queue() {
     memset(event_queue, 0, sizeof(event_queue));
     head = 0;
     tail = 0;   
+    queue_count = 0;
 }
 
 uint32_t test_module_count_per_event(uint32_t event) {

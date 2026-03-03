@@ -7,7 +7,7 @@ Makefile
 cmake_install.cmake
 
 
-# build outputs
+# Build Outputs
 *.a
 
 build/
@@ -17,9 +17,14 @@ basic_main
 basic_main/binary_dir
 
 test/CTestTestfile.cmake
+test/Unity/CTestTestfile.cmake
 test/binary_dir/
-test/testing
+test/Testing
 
+# Test Targets
+test/TestDataQueue
+test/TestAppVersion
+test/TestEventCore
 
-# targets
+# Targets
 libEventShareOS.a
