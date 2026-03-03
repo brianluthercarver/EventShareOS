@@ -83,31 +83,31 @@ by EventShareOS.
 // These need to be run before the super loop
 
 /* 
-Function: event_loop_set_events_range (uint32_t max)
+Function: event_core_set_events_range (uint32_t max)
 
 EventShareOS needs to know the maximum number of 
 events used by your program. This is to provide
 a safety. It should look like this:
-event_loop_set_events_range(EVENT_EOL); 
+event_core_set_events_range(EVENT_EOL); 
 */
-void event_loop_set_events_range(uint32_t max);
+void event_core_set_events_range(uint32_t max);
 
 /* 
-Function: event_loop_set_modules_range(uint32_t max)
+Function: event_core_set_modules_range(uint32_t max)
 
 EventShareOS needs to know the maximum number of 
 events used by your program. This is to provide
 a safety. It should look like this:
-event_loop_set_modules_range(MODULE_EOL); 
+event_core_set_modules_range(MODULE_EOL); 
 */
-void event_loop_set_modules_range(uint32_t max);
+void event_core_set_modules_range(uint32_t max);
 
 /* 
-Function: event_loop_init
+Function: event_core_init
 
-This initializes the event loop code.  
+This initializes the event core code.  
 */
-void event_loop_init(void);
+void event_core_init(void);
 
 /*
 Super Loop Functions:
@@ -121,27 +121,27 @@ provided for the soft timers.
 
 A polling main loop will look like this:
 
-   while(event_loop_running()) {
+   while(event_core_running()) {
        poll_time_keeper();
-       event_loop_scheduler();
+       event_core_scheduler();
    }
 */
 
 
 /* 
-Function: event_loop_running
+Function: event_core_running
 This function provides the mechanism to
 break out of the super loop and shut down
 the system.  
 */
-bool event_loop_running();
+bool event_core_running();
 
 /* 
-Function: event_loop_scheduler
+Function: event_core_scheduler
 This is the heart of EventShareOS managing 
 events and sending them to the module code. 
 */
-void event_loop_scheduler(void);
+void event_core_scheduler(void);
 
 
 // Module Functions

@@ -15,7 +15,7 @@ include_directories(basic ../EventShareOS)
 target_link_libraries(basic_main PUBLIC EventShareOS)
 
 target_sources(basic_main PRIVATE
-    basic_eventloop.c
+    basic_event_core.c
     keyboard_module.c
     app_module.c
     quote_module.c

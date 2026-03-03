@@ -5,24 +5,20 @@ for more details.
 ************************************************************/
 
 /*****************************************************************
-*
-* eventloop.c
-*
-* Public code file for the event loop.
-* 
-* Within each of these functions there is a call to an implementation
-* specific version of initialization and the scheduler.  This allows
-* shared code to used across different implementations and test 
-* frameworks.  
-*  
-*******************************************************************/
+
+Filename: event_core.c
+
+Public code file for the event core: the scheduler function,
+the calles to the custome, init, core, and quit functions.
+
+******************************************************************/
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <string.h>
 
-#include "event_loop.h"
-#include "custom_event_loop.h"
+#include "event_core.h"
+#include "custom_event_core.h"
 #include "event_data.h"
 
 #define MAX_SUBSCRIPTION_SIZE 100
@@ -41,11 +37,11 @@ static uint32_t events_max = 0;
 static uint32_t modules_min = 0;
 static uint32_t modules_max = 0;
 
-void event_loop_set_events_range(uint32_t max) {
+void event_core_set_events_range(uint32_t max) {
     events_min = 0;
     events_max = max;
 }
-void event_loop_set_modules_range(uint32_t max) {
+void event_core_set_modules_range(uint32_t max) {
     modules_min = 0;
     modules_max = max;
 }
@@ -57,17 +53,17 @@ uint32_t get_max_modules() {
     return(modules_max);
 }
 
-void event_loop_init(void)
+void event_core_init(void)
 {
     memset(subscriptions, 0, sizeof(subscriptions));
     memset(event_queue, 0, sizeof(event_queue));
     head = 0;
     tail = 0;
     queue_count = 0;
-    custom_loop_init();
+    custom_core_init();
 }
 
-void event_loop_scheduler(void)
+void event_core_scheduler(void)
 {
     // get the first item off the queue
     uint32_t E = event_queue[head].event;
@@ -77,7 +73,7 @@ void event_loop_scheduler(void)
     // pass the E & V onto the custom scheduler with the subscription
     if (( E > events_min ) && ( E < events_max))
     {
-    	custom_loop_scheduler(module_mask, E, V);
+    	custom_core_scheduler(module_mask, E, V);
         event_data_clean_slot();
         
         // clear the item out of the queue
@@ -152,10 +148,10 @@ void signal_quit()
 {
     running_status = false;
     // all the private cleanup  signals are handle here
-    custom_loop_quit();
+    custom_core_quit();
 }
 
-bool event_loop_running()
+bool event_core_running()
 {
     return (running_status);
 }

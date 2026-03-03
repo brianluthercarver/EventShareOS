@@ -10,7 +10,7 @@ for more details.
 #include <stdbool.h>
 
 #include "EventShareOS.h"
-#include "event_loop.h"
+#include "event_core.h"
 #include "soft_timer.h"
 
 

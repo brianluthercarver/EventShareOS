@@ -25,7 +25,7 @@ function.
 #include <string.h>
 
 #include "EventShareOS.h"
-#include "custom_event_loop.h"
+#include "custom_event_core.h"
 #include "versioning.h"
 
 
@@ -37,7 +37,7 @@ function.
 #include "quote_module.h"
 #include "basic_version.h"
 
-void custom_loop_init(void) {
+void custom_core_init(void) {
 
     // Set the application version here, remember to include
     // versioning.h
@@ -82,7 +82,7 @@ void custom_loop_init(void) {
 }
 
 
-void custom_loop_scheduler(unsigned int module_list, events event, 
+void custom_core_scheduler(unsigned int module_list, events event, 
                            unsigned int value) {
 
     //printf("custom_loop_scheduler event %d, value %i \n", event, value);
@@ -248,7 +248,7 @@ void custom_loop_scheduler(unsigned int module_list, events event,
     }
 
 }
-void custom_loop_quit(void) {
+void custom_core_quit(void) {
     app_module_cleanup();
     keyboard_module_cleanup();
     quote_module_cleanup();

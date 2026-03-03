@@ -15,7 +15,7 @@ add_library(EventShareOS
     inc/event_data.h
 
     src/event_data.c
-    src/event_loop.c
+    src/event_core.c
     src/performance.c
     src/posix_timer.c
     src/soft_timer.c

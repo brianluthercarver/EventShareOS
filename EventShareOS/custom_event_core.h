@@ -7,22 +7,21 @@ for more details.
 
 /*****************************************************************
 *
-* custom_event_loop.h
+* custom_event_core.h
 *
-* user custom implementation for the event loop.  These are called
-* the internal functions
+* user custom implementation for the event core functions.
 * 
 *  
 *******************************************************************/
 
-#ifndef CUSTOM_EVENT_LOOP_H
-#define CUSTOM_EVENT_LOOP_H
+#ifndef CUSTOM_EVENT_CORE_H
+#define CUSTOM_EVENT_CORE_H
 
 #include <stdint.h>
 
-void custom_loop_init(void);
-void custom_loop_scheduler(uint32_t module_list, uint32_t event, 
+void custom_core_init(void);
+void custom_core_scheduler(uint32_t module_list, uint32_t event, 
                            uint32_t value);
-void custom_loop_quit(void);
+void custom_core_quit(void);
 
-#endif // CUSTOM_EVENT_LOOP_H
+#endif // CUSTOM_EVENT_CORE_H

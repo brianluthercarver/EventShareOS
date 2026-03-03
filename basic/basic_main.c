@@ -21,7 +21,7 @@ integration of EventShareOS the eventloop code.
 #include <stdbool.h>
 #include <string.h>
 
-// eventloop code
+// EventShareOS code
 #include "EventShareOS.h"
 #include "posix_timer.h"
 
@@ -36,19 +36,19 @@ int main(int argc, char *argv[]) {
     memset(os_version, 0, sizeof(os_version));
     event_version_string(os_version, sizeof(os_version));
    
-    // Execute the customization of the eventloop
+    // Execute the customization of the event schedulure
     printf("main, Hello EventShareOS Basic Demo with keyboard and polling time!\n");
     printf("main, using EventShareOS verion %s \n", os_version);
-    event_loop_set_events_range(EVENT_EOL);
-    event_loop_set_modules_range(MODULE_EOL);
+    event_core_set_events_range(EVENT_EOL);
+    event_core_set_modules_range(MODULE_EOL);
     timer_init();
-    event_loop_init();
+    event_core_init();
     init_poll_time_keeper();
     event_data_init_memory();
 
-    while(event_loop_running()) {
+    while(event_core_running()) {
         poll_time_keeper();
-        event_loop_scheduler();
+        event_core_scheduler();
     }
 
 }
