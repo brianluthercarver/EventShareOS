@@ -165,3 +165,58 @@ void enable_timer(uint32_t E, bool on_off)
     }
 }
 
+uint32_t test_count_soft_timers() {
+    uint32_t count = 0;
+    for (uint32_t i = 0; i < max_events; i++) {
+        if (timer_events[i].control >  timer_events_min ) {
+            count++; 
+        }
+    }
+    return(count);
+}
+
+bool test_empty_timer_list() {
+    bool empty = true;
+    for (uint32_t i = 0; i < max_events; i++) {
+        if (timer_events[i].control >  timer_events_min ) {
+        empty = false;
+        }
+    }
+    return(empty);
+}
+
+int32_t test_report_timer_status(uint32_t event) {
+    int32_t status = 0;
+    if ((event > timer_events_min) && (event < timer_events_max)) {
+        for (uint32_t i = 0; i < max_events; i++)  {
+            if (timer_events[i].control == event )
+            {
+                if (timer_events[i].enabled) {
+                    status = 1;
+                }
+                else  {
+                    status = -1;
+                }
+            }
+        }
+    }
+    return(status);
+}
+
+int32_t test_report_timer_type(uint32_t event) {
+    int32_t status = 0;
+    if ((event > timer_events_min) && (event < timer_events_max)) {
+        for (uint32_t i = 0; i < max_events; i++) {
+            if (timer_events[i].control == event )
+            {
+                if (timer_events[i].type) {
+                    status = 1;
+                }
+                else {
+                    status = -1;
+                }
+            }
+        }
+    }
+    return(status);
+}

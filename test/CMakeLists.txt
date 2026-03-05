@@ -59,3 +59,17 @@ PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
     ${CMAKE_CURRENT_SOURCE_DIR}./Unity
 )
+
+# EventShare Soft Timers Test
+add_executable(TestSoftTimers "./tests/test_soft_timer.c" "./tests/test_event_base.c")
+
+add_test(NAME test_soft_timer COMMAND TestSoftTimers)
+
+target_link_libraries(TestSoftTimers PUBLIC EventShareOS)
+target_link_libraries(TestSoftTimers PUBLIC Unity)
+
+target_include_directories(TestSoftTimers
+PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
+    ${CMAKE_CURRENT_SOURCE_DIR}./Unity
+)

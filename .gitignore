@@ -25,6 +25,7 @@ test/Testing
 test/TestDataQueue
 test/TestAppVersion
 test/TestEventCore
+test/TestSoft_timers
 
 # Targets
 libEventShareOS.a

@@ -61,4 +61,35 @@ Returns the number of modules subscribed to an event
 */
 uint32_t test_module_count_per_event(uint32_t event);
 
+
+/*
+Function: test_count_soft_timers()
+
+Returns the number of timers in the list
+*/
+uint32_t test_count_soft_timers();
+
+/*
+Function: bool test_empty_timer_list()
+
+Returns true if the timer list is empty
+*/
+bool test_empty_timer_list();
+
+/*
+Function: test_report_timer_status(uint32_t event)
+
+Returns -1 Timer off, 0 Not Found, +1 Timer on
+*/
+int32_t test_report_timer_status(uint32_t event);
+
+
+/*
+Function: test_report_timer_type(uint32_t event)
+
+Returns -1 Timer One Shot, 0 Not Foun,d +1 Timer Repeat 
+*/
+int32_t test_report_timer_type(uint32_t event);
+
+
 #endif // EVENTSHAREOS_TEST_H
