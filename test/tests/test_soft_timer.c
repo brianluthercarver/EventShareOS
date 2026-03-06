@@ -278,15 +278,15 @@ void test_one_shot_timer_enable() {
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_not_empty_list);
-    RUN_TEST(test_add_timer_repeat_on);
-    RUN_TEST(test_add_timer_repeat_off);
+    RUN_TEST(test_add_timer_repeat_on); 
+    RUN_TEST(test_add_timer_repeat_off); 
     RUN_TEST(test_add_timer_repeat_on_disable);
     RUN_TEST(test_add_timer_repeat_on_enabled);
-    RUN_TEST(test_add_one_shot_enabled);
+    RUN_TEST(test_add_one_shot_enabled); 
     RUN_TEST(test_add_one_shot_disabled);
-    RUN_TEST(test_add_one_shot_disabled_start);
-    RUN_TEST(test_add_one_shot_enable_cancel);
+    RUN_TEST(test_add_one_shot_disabled_start);  
+    RUN_TEST(test_add_one_shot_enable_cancel); 
     RUN_TEST(test_repeating_timer_cancel);
-    //RUN_TEST(test_one_shot_timer_enable);
+    RUN_TEST(test_one_shot_timer_enable);
     return (UNITY_END());
 }

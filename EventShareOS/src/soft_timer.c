@@ -25,6 +25,7 @@ void timer_init()
 {
     memset(timer_events, 0, sizeof(timer_events));
     main_time = 0;
+    max_events = 0;
     timer_events_max = get_max_events();
 
 }
@@ -159,9 +160,30 @@ void enable_timer(uint32_t E, bool on_off)
         {
             if (timer_events[i].control == E )
             {
-                timer_events[i].enabled = on_off;
+                if (timer_events[i].type == TIMER_REPEAT) {
+                    // enable_timer is strictly for repeat timers
+                    timer_events[i].enabled = on_off;
+                }
             }
         }
+    }
+}
+
+void test_dump_soft_timer_list() {
+    printf("Dump Timer List %d Max Length\n", max_events);
+    for (uint32_t i = 0; i < max_events; i++) {
+         printf("Timer List [%d] ", i);
+         printf("Event # %d ", timer_events[1].control);
+         if (timer_events[i].type) {
+            printf(" TIMER_ONE_SHOT ");
+         } else {
+            printf("TIMER_REPEAT ");
+         }
+         if (timer_events[i].enabled) {
+            printf(" ENABLED \n");
+         } else {
+            printf(" DISABLED \n");
+         }
     }
 }
 
