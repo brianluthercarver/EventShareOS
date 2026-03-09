@@ -45,12 +45,12 @@ void time_keeper()
             {
                 if ( timer_events[i].type == TIMER_REPEAT )
                 {
-                    publish_event(timer_events[i].control, 0);
+                    publish_event(timer_events[i].event, 0);
                     timer_events[i].count_down = timer_events[i].time;                   
                 }
                 else  // TIMER_ONE_SHOT
                 {
-                    publish_event(timer_events[i].control, 0);
+                    publish_event(timer_events[i].event, 0);
                     timer_events[i].enabled = TIMER_DISABLED;
                 }
             }
@@ -64,7 +64,7 @@ void time_keeper()
 void update_timer_event(int i, uint32_t C, uint16_t milliseconds, bool timer_type, bool on_off)
 {
     if ((C > timer_events_min) && (C < timer_events_max)) {
-        timer_events[i].control = C;
+        timer_events[i].event = C;
         timer_events[i].time = milliseconds;
         timer_events[i].count_down = milliseconds;
         timer_events[i].type = timer_type;
@@ -88,14 +88,14 @@ void add_timer_event(uint32_t E, uint16_t milliseconds, bool timer_type, bool on
         while (not_done)
         {
             // overwrite the existing timer 
-            if ( timer_events[i].control == E)
+            if ( timer_events[i].event == E)
             {
                 update_timer_event(i, E, milliseconds, timer_type, on_off);
                 not_done = false;
             }
             
             // add a new timer
-            if ( timer_events[i].control == timer_events_min )
+            if ( timer_events[i].event == timer_events_min )
             {
                 if ((E < timer_events_max) && (max_events < MAX_TIME_EVENTS))
                 {
@@ -120,7 +120,7 @@ void start_timer(uint32_t E)
     if ((E > timer_events_min) && (E < timer_events_max)) {
         for (uint32_t i = 0; i < max_events; i++)
         {
-            if (timer_events[i].control == E )
+            if (timer_events[i].event == E )
             {
                 if (timer_events[i].type == TIMER_ONE_SHOT)
                 {
@@ -137,7 +137,7 @@ void cancel_timer(uint32_t E)
     if ((E > timer_events_min) && (E < timer_events_max)) {
         for (uint32_t i = 0; i < max_events; i++)
         {
-            if (timer_events[i].control == E )
+            if (timer_events[i].event == E )
             {
                 if (timer_events[i].type == TIMER_ONE_SHOT)
                 {
@@ -158,7 +158,7 @@ void enable_timer(uint32_t E, bool on_off)
     if ((E > timer_events_min) && (E < timer_events_max)) {
         for (uint32_t i = 0; i < max_events; i++)
         {
-            if (timer_events[i].control == E )
+            if (timer_events[i].event == E )
             {
                 if (timer_events[i].type == TIMER_REPEAT) {
                     // enable_timer is strictly for repeat timers
@@ -173,7 +173,7 @@ void test_dump_soft_timer_list() {
     printf("Dump Timer List %d Max Length\n", max_events);
     for (uint32_t i = 0; i < max_events; i++) {
          printf("Timer List [%d] ", i);
-         printf("Event # %d ", timer_events[1].control);
+         printf("Event # %d ", timer_events[1].event);
          if (timer_events[i].type) {
             printf(" TIMER_ONE_SHOT ");
          } else {
@@ -190,7 +190,7 @@ void test_dump_soft_timer_list() {
 uint32_t test_count_soft_timers() {
     uint32_t count = 0;
     for (uint32_t i = 0; i < max_events; i++) {
-        if (timer_events[i].control >  timer_events_min ) {
+        if (timer_events[i].event >  timer_events_min ) {
             count++; 
         }
     }
@@ -200,7 +200,7 @@ uint32_t test_count_soft_timers() {
 bool test_empty_timer_list() {
     bool empty = true;
     for (uint32_t i = 0; i < max_events; i++) {
-        if (timer_events[i].control >  timer_events_min ) {
+        if (timer_events[i].event >  timer_events_min ) {
         empty = false;
         }
     }
@@ -211,7 +211,7 @@ int32_t test_report_timer_status(uint32_t event) {
     int32_t status = 0;
     if ((event > timer_events_min) && (event < timer_events_max)) {
         for (uint32_t i = 0; i < max_events; i++)  {
-            if (timer_events[i].control == event )
+            if (timer_events[i].event == event )
             {
                 if (timer_events[i].enabled) {
                     status = 1;
@@ -229,7 +229,7 @@ int32_t test_report_timer_type(uint32_t event) {
     int32_t status = 0;
     if ((event > timer_events_min) && (event < timer_events_max)) {
         for (uint32_t i = 0; i < max_events; i++) {
-            if (timer_events[i].control == event )
+            if (timer_events[i].event == event )
             {
                 if (timer_events[i].type) {
                     status = 1;

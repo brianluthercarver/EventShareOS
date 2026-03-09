@@ -25,7 +25,7 @@ the calles to the custome, init, core, and quit functions.
 #define MAX_QUEUE_SIZE 20
 
 static uint32_t subscriptions[MAX_SUBSCRIPTION_SIZE];
-static control_value event_queue[MAX_QUEUE_SIZE];
+static event_value event_queue[MAX_QUEUE_SIZE];
 static uint32_t head = 0;
 static uint32_t tail = 0;
 static uint32_t queue_count = 0;

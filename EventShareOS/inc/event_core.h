@@ -33,10 +33,10 @@ for more details.
 #include <stdbool.h>
 #include <stdint.h>
 
-typedef struct CONTROL_VALUE {
+typedef struct EVENT_VALUE {
     uint32_t event;
     uint32_t value;
-} control_value;
+} event_value;
 
 // internal functions for the timer module
 uint32_t get_max_events();

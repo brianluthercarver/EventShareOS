@@ -26,7 +26,7 @@ overwritten by the new parameters.
 
 
 typedef struct TIMER_EVENT {
-    uint32_t control;
+    uint32_t event;
     uint16_t time;
     uint16_t count_down;
     uint8_t type;
