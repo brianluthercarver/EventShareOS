@@ -34,7 +34,13 @@ typedef struct TIMER_EVENT {
 } timer_event;
 
 
-void time_keeper();
+/*
+Function: get_current_time()
+
+Returns the current time, this is used by the 
+performance module. 
+*/
+uint32_t get_current_time();
 
 
 #endif  //TIMER_H

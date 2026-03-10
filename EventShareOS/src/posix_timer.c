@@ -20,7 +20,7 @@ For polling linux systems use poll_time_keeper().
 #include <stdint.h>
 #include <stdio.h>
 
-#include "soft_timer.h"
+#include "EventShareOS.h"
 
 #define ONE_MILLISECOND_IN_NANO   10000
 #define CONVERT_SECOND_TO_NANO    1000000000

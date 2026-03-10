@@ -24,16 +24,52 @@ Event queue depth
 #include <stdint.h>
 
 // initialization functions 
-void performance_set_controls_size(uint32_t max);
-void performance_set_module_size(uint32_t max);
+
+/*
+Function: performance_init()
+
+Initializes the performance module. Clears the memory.
+*/
 void performance_init();
 
 // performance functions
-void event_queue_miss();
-void os_overhead_start();
-void modules_start();
 
+/*
+Function: event_queue_miss()
+
+Updates the number of times the queue rejected 
+a publish_event.
+*/
+void event_queue_miss();
+
+/*
+Function: os_overhead_start()
+
+Records the start time for the event_core functions
+*/
+void os_overhead_start();
+
+/*
+Function: os_overhead_end()
+
+Records to the total time the event_core functions has ran. 
+Calculates the average run time.
+*/
+void os_overhead_end();
+
+
+/*
+Function: module_begin(uint32_t module_number)
+
+Records the start time for that module
+*/
 void module_begin(uint32_t module_number);
 
+/*
+Function: module_end(uint32_t module_number)
+
+Records the total time, and calculates average run time
+*/
+void module_end(uint32_t module_number);
 
 #endif // PERFORMANCE_H

@@ -144,6 +144,15 @@ events and sending them to the module code.
 void event_core_scheduler(void);
 
 
+/*
+Function: void time_keeper()
+This function needs to be called by an interrupt to 
+run the soft timers.  At this current design
+it is meant to run on a milisecond time. 
+*/
+void time_keeper();
+
+
 // Module Functions
 
 /* 

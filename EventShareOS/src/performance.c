@@ -45,16 +45,17 @@ Keeping track of the total time will roll over in 119.3 hours.
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
-#include <time.h>
 
-
+#include "event_core.h"
+#include "soft_timer.h"
 #include "performance.h"
 
-
-#define PERFORMANCE_STATS_ARRAY_SIZE 5
+// there can only be no more than 32 modules
+#define PERFORMANCE_STATS_ARRAY_SIZE 32
 #define OS_OVERHEAD_SLOT             0
 
 typedef struct PERFORMANCE_STATS {
+    uint32_t start;
     uint32_t total_time;
     uint32_t total_runs;
     uint32_t average_run_time;
@@ -63,45 +64,21 @@ typedef struct PERFORMANCE_STATS {
 
 
 // variables
-
-static uint32_t controls_size = 0;
 static uint32_t modules_size  = 0;
 
 static performance_stats stats[PERFORMANCE_STATS_ARRAY_SIZE];
 
-static uint32_t event_queue_misses        = 0;
-static uint32_t event_queue_depth_total   = 0;
-static uint32_t event_queue_depth_runs    = 0;
-static uint32_t event_queue_depth_average = 0;
-static uint32_t current_module            = 0;
+static uint32_t event_queue_misses = 0;
 
-// Time keeping functions, units are 1us = 100 units
-static uint32_t time_start = 0;
-static uint32_t time_end = 0;
-static uint32_t time_diff = 0;
 
 // functions 
 
-void performance_set_controls_size(uint32_t max) {
-    controls_size = max;
-}
-void performance_set_module_size(uint32_t max) {
-    modules_size = max;
-}
-
-// Function: performance_init
-// The initialization of the performance section.
-// The modules is listed an enum with zero and last number
-// specifying the end of the list. So the performance array
-// must be sized to store all the modules.
-
 void performance_init() {
-    event_queue_misses        = 0;
-    event_queue_depth_total   = 0;
-    event_queue_depth_runs    = 0;
-    event_queue_depth_average = 0;
+    event_queue_misses = 0;
 
     memset(stats, 0, sizeof(performance_stats));
+
+    modules_size = get_max_modules();
 
     // protections
     if (modules_size > PERFORMANCE_STATS_ARRAY_SIZE) {
@@ -110,36 +87,39 @@ void performance_init() {
 
 }
 
-#define ONE_MILLISECOND_IN_MICRO   1000
-#define CONVERT_FROM_NANO_TO_MICRO 1000
-#define CONVERT_FROM_MICRO_TO_MILLI 100  // shifted
-#define CONVERT_SECOND_TO_MICRO    1000000
 
-uint32_t get_posix_time() {
-    struct timespec current_time;
-    uint64_t microsecond_time = 0;
-    uint32_t millisecond_time = 0;
-
-    clock_gettime(CLOCK_MONOTONIC, &current_time);
-    microsecond_time = current_time.tv_sec * CONVERT_SECOND_TO_MICRO +
-                       (uint64_t) current_time.tv_nsec /  CONVERT_FROM_NANO_TO_MICRO;
-
-    millisecond_time =  (uint32_t) microsecond_time / CONVERT_FROM_MICRO_TO_MILLI;                  
-    return(millisecond_time);
-} 
-
-
-void os_overhead_start() {
-
+void event_queue_miss() {
+    event_queue_misses++;
 }
 
-void modules_start() {
+// The operating system will alway be at slot zero
 
+void os_overhead_start() {
+    stats[0].start += get_current_time();  
+}
+
+void os_overhead_end() {
+    uint32_t time = get_current_time();
+    stats[0].total_time += time - stats[0].start;
+    stats[0].total_runs++;
+    stats[0].average_run_time = stats[0].total_time / stats[0].total_runs;
 }
 
 void module_begin(uint32_t module_number) {
-
+    if ( module_number < modules_size) {
+        stats[module_number].start += get_current_time();  
+    }
 }
+
+void module_end(uint32_t module_number) {
+    if ( module_number < modules_size) {
+        uint32_t time = get_current_time();
+        stats[module_number].total_time += time - stats[module_number].start;
+        stats[module_number].total_runs++;
+        stats[module_number].average_run_time = stats[module_number].total_time / stats[module_number].total_runs;
+    }
+}
+
 
 /*
  

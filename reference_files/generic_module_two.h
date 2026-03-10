@@ -13,7 +13,7 @@ XXXXX_init();
 This is the  initialization code for that module. The 
 code may or may not be needed but it should be defined.
 
-XXXXX_control(events C, unsigned int V);
+XXXXX_control(events E, unsigned int V);
 This is the main module code run by the scheduler. 
 The event enumeration and the associated value is passed 
 from the scheduler.
@@ -31,7 +31,7 @@ module.
 #include "events.h" 
 
 void generic_module_two_init();
-void generic_module_two_control(events C, unsigned int V);
+void generic_module_two_control(events E, unsigned int V);
 void generic_module_two_cleanup();
 
 #endif // GNERIC_MODULE_TWO_H
