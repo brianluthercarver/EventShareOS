@@ -63,6 +63,14 @@ uint32_t test_module_count_per_event(uint32_t event);
 
 
 /*
+Function: void test_stimulate_timer(uint32_t count)
+
+Move the main timer forward like an interrupt. 
+Used only for test purposes. 
+*/
+void test_stimulate_timer(uint32_t count);
+
+/*
 Function: test_dump_soft_timer_list() 
 
 Dumps the entire list for humans
@@ -98,5 +106,27 @@ Returns -1 Timer One Shot, 0 Not Found +1 Timer Repeat
 */
 int32_t test_report_timer_type(uint32_t event);
 
+
+
+/*
+FunctionL: test_get_performance_time(uint32_t slot)
+
+Returns the total time for that module
+*/
+uint32_t test_get_performance_time(uint32_t slot);
+
+/*
+Function: test_get_performance_runs(uint32_t slot)
+
+Returns the total number of runs for that module.
+*/
+uint32_t test_get_performance_runs(uint32_t slot); 
+
+/*
+Function: test_get_performance_avg(uint32_t slot)
+
+Returns the average run time for that module
+*/
+uint32_t test_get_performance_avg(uint32_t slot);
 
 #endif // EVENTSHAREOS_TEST_H

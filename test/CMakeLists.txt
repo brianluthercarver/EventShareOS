@@ -73,3 +73,17 @@ PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
     ${CMAKE_CURRENT_SOURCE_DIR}./Unity
 )
+
+# EventShare Performance Test
+add_executable(TestPerformance "./tests/test_performance.c" "./tests/test_event_base.c" )
+
+add_test(NAME test_performance COMMAND TestPerformance)
+
+target_link_libraries(TestPerformance PUBLIC EventShareOS)
+target_link_libraries(TestPerformance PUBLIC Unity)
+
+target_include_directories(TestPerformance
+PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}../EventShareOS
+    ${CMAKE_CURRENT_SOURCE_DIR}./Unity
+)

@@ -95,14 +95,15 @@ void event_queue_miss() {
 // The operating system will alway be at slot zero
 
 void os_overhead_start() {
-    stats[0].start += get_current_time();  
+    stats[OS_OVERHEAD_SLOT].start += get_current_time();  
 }
 
 void os_overhead_end() {
     uint32_t time = get_current_time();
-    stats[0].total_time += time - stats[0].start;
-    stats[0].total_runs++;
-    stats[0].average_run_time = stats[0].total_time / stats[0].total_runs;
+    stats[OS_OVERHEAD_SLOT].total_time += time - stats[OS_OVERHEAD_SLOT].start;
+    stats[OS_OVERHEAD_SLOT].total_runs++;
+    stats[OS_OVERHEAD_SLOT].average_run_time = stats[OS_OVERHEAD_SLOT].total_time 
+                                             / stats[OS_OVERHEAD_SLOT].total_runs;
 }
 
 void module_begin(uint32_t module_number) {
@@ -120,7 +121,14 @@ void module_end(uint32_t module_number) {
     }
 }
 
+uint32_t test_get_performance_time(uint32_t slot) {
+     return(stats[slot].total_time);
+}
 
-/*
- 
-                       */
+uint32_t test_get_performance_runs(uint32_t slot) {
+     return(stats[slot].total_runs);
+}
+
+uint32_t test_get_performance_avg(uint32_t slot) {
+     return(stats[slot].average_run_time);
+}

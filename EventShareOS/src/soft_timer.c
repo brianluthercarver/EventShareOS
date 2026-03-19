@@ -173,6 +173,11 @@ uint32_t get_current_time() {
     return(main_time);
 }
 
+void test_stimulate_timer(uint32_t count)
+{
+    main_time += count;
+}
+
 void test_dump_soft_timer_list() {
     printf("Dump Timer List %d Max Length\n", max_events);
     for (uint32_t i = 0; i < max_events; i++) {

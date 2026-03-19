@@ -11,6 +11,7 @@ add_library(EventShareOS
     custom_event_core.h
     posix_timer.h
     versioning.h
+    performance.h
 
     inc/event_data.h
 
