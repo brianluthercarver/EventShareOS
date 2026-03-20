@@ -80,7 +80,7 @@ void performance_init() {
 
     modules_size = get_max_modules();
 
-    // protections
+    // protection
     if (modules_size > PERFORMANCE_STATS_ARRAY_SIZE) {
         assert("Module Size must not exceed performance monitor array size.");
     }
@@ -108,7 +108,7 @@ void os_overhead_end() {
 
 void module_begin(uint32_t module_number) {
     if ( module_number < modules_size) {
-        stats[module_number].start += get_current_time();  
+        stats[module_number].start = get_current_time();  
     }
 }
 
