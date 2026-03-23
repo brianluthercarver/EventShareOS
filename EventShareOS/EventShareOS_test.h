@@ -129,4 +129,11 @@ Returns the average run time for that module
 */
 uint32_t test_get_performance_avg(uint32_t slot);
 
+/*
+Function: void test_dump_performance_stats()
+
+Displays the current status of the internal stats structure
+*/
+void test_dump_performance_stats();
+
 #endif // EVENTSHAREOS_TEST_H

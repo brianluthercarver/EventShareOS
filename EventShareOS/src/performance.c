@@ -41,7 +41,7 @@ Keeping track of the total time will roll over in 119.3 hours.
 
 ************************************************************/
 
-
+#include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
@@ -76,7 +76,7 @@ static uint32_t event_queue_misses = 0;
 void performance_init() {
     event_queue_misses = 0;
 
-    memset(stats, 0, sizeof(performance_stats));
+    memset(stats, 0, sizeof(stats));
 
     modules_size = get_max_modules();
 
@@ -131,4 +131,11 @@ uint32_t test_get_performance_runs(uint32_t slot) {
 
 uint32_t test_get_performance_avg(uint32_t slot) {
      return(stats[slot].average_run_time);
+}
+
+void test_dump_performance_stats() {
+    for (int i=0; i < PERFORMANCE_STATS_ARRAY_SIZE; i++) {
+        printf("Slot %d, start time %d, time %d, runs %d, avg %d \n",
+            i, stats[i].start, stats[i].total_time, stats[i].total_runs, stats[i].average_run_time);
+    }
 }
