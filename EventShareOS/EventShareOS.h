@@ -276,6 +276,22 @@ EventShareOS. No other support for a version number will be provided.
 void event_version_string(char * return_buffer, uint32_t size );
 
 
+/*
+Function: module_begin(uint32_t module_number)
+
+Records the start time for that module
+*/
+void module_begin(uint32_t module_number);
+
+/*
+Function: module_end(uint32_t module_number)
+
+Records the total time, and calculates average run time
+*/
+void module_end(uint32_t module_number);
+
+
+
 // UNDER CONSTRUCTION
 
 

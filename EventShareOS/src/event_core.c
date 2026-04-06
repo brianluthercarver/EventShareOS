@@ -9,7 +9,7 @@ for more details.
 Filename: event_core.c
 
 Public code file for the event core: the scheduler function,
-the calles to the custome, init, core, and quit functions.
+the calls to the custom, init, core, and quit functions.
 
 ******************************************************************/
 #include <stdio.h>
@@ -20,6 +20,7 @@ the calles to the custome, init, core, and quit functions.
 #include "event_core.h"
 #include "custom_event_core.h"
 #include "event_data.h"
+#include "performance.h"
 
 #define MAX_SUBSCRIPTION_SIZE 100
 #define MAX_QUEUE_SIZE 20
@@ -61,6 +62,7 @@ void event_core_init(void)
     tail = 0;
     queue_count = 0;
     custom_core_init();
+    performance_init();
 }
 
 void event_core_scheduler(void)
@@ -120,26 +122,25 @@ void publish_event(uint32_t E, unsigned int V)
 {
     // insert E V pair onto the queue 
     // printf("event %d, value %i \n", E, V);
-    if (queue_available)
-    {
+    if (queue_available) {
         queue_count++;
         event_queue[tail].event = E;
         event_queue[tail].value = V;
 
         // move the tail
         ++tail;
-        if (tail == MAX_QUEUE_SIZE)
-        {
+        if (tail == MAX_QUEUE_SIZE) {
             tail = 0;
         }
-        if ( tail == head )
-        {
+        if ( tail == head ) {
             queue_available = false; // full queue
         }
-        else if (queue_count == MAX_QUEUE_SIZE)
-        {
+        else if (queue_count == MAX_QUEUE_SIZE) {
             queue_available = false;  // full queue
         }
+    }
+    else {
+        event_queue_miss();
     }
 }
 

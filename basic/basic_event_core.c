@@ -89,17 +89,23 @@ void custom_core_scheduler(unsigned int module_list, events event,
 
     if (module_list & MODULE_01_MASK) {
         // call module 01 here
+        module_begin(MODULE_KEYBOARD);
         keyboard_module_control(event, value);
+        module_end(MODULE_KEYBOARD);
     }
 
     if (module_list & MODULE_02_MASK) {
         // call module 01 here
+        module_begin(MODULE_APP);
         app_module_control(event, value);
+        module_end(MODULE_APP);
     }
 
     if (module_list & MODULE_03_MASK) {
         // call module 03 here
+        module_begin(MODULE_QUOTE);
         quote_module_control(event, value);
+        module_end(MODULE_QUOTE);
     }
 
     if (module_list & MODULE_04_MASK) {

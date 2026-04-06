@@ -58,18 +58,4 @@ Calculates the average run time.
 void os_overhead_end();
 
 
-/*
-Function: module_begin(uint32_t module_number)
-
-Records the start time for that module
-*/
-void module_begin(uint32_t module_number);
-
-/*
-Function: module_end(uint32_t module_number)
-
-Records the total time, and calculates average run time
-*/
-void module_end(uint32_t module_number);
-
 #endif // PERFORMANCE_H
